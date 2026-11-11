@@ -102,29 +102,31 @@
 }
 
 /* Botão principal em dourado suave sem glow */
-.botao-dourado {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background-color: var(--dourado);
-  color: #FFFFFF;
-  font-size: 0.8125rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 600;
-  border-radius: 6px;
-  transition:
-    background-color 0.25s ease,
-    transform 0.2s ease;
-}
+@layer components {
+  .botao-dourado {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--dourado);
+    color: #FFFFFF;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 6px;
+    transition:
+      background-color 0.25s ease,
+      transform 0.2s ease;
+  }
 
-.botao-dourado:hover {
-  background-color: var(--dourado-hover);
-}
+  .botao-dourado:hover {
+    background-color: var(--dourado-hover);
+  }
 
-.botao-dourado:active {
-  transform: scale(0.98);
+  .botao-dourado:active {
+    transform: scale(0.98);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
