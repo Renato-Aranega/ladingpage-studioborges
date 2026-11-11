@@ -28,19 +28,19 @@ export const Hero: React.FC = () => {
               exclusivo para realçar o seu olhar.
             </p>
 
-            <div className="flex flex-wrap items-center gap-6 pt-1 sm:pt-2">
+            <div className="hidden md:flex flex-wrap items-center gap-6 pt-2">
               <a
                 href={obterLinkWhatsApp()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="botao-dourado w-full sm:w-auto px-7 py-3.5"
+                className="botao-dourado px-7 py-3.5"
               >
                 Agendar Horário
               </a>
 
               <a
                 href="#cilios"
-                className="hidden sm:inline-block text-xs uppercase tracking-[0.14em] text-[#6F4B9E] hover:text-[#261835] font-medium border-b border-[#9B76C9]/40 pb-1 transition-colors"
+                className="inline-block text-xs uppercase tracking-[0.14em] text-[#6F4B9E] hover:text-[#261835] font-medium border-b border-[#9B76C9]/40 pb-1 transition-colors"
               >
                 Ver valores
               </a>
