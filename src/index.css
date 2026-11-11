@@ -33,26 +33,26 @@ body.tema-escuro {
   --cor-gradiente-foto: linear-gradient(to top, rgba(24, 14, 33, 0.95) 0%, rgba(24, 14, 33, 0.4) 60%, transparent 100%);
 }
 
-/* Modo Claro (Linho Pérola, Off-White & Dourado Nobre) */
+/* Modo Claro (Linho Pérola, Off-White & Dourado Nobre de Alto Contraste) */
 .tema-claro,
 html.tema-claro,
 body.tema-claro {
-  --cor-fundo: #FAF7F2;
-  --cor-fundo-secundario: #F2EBE0;
+  --cor-fundo: #FBF9F5;
+  --cor-fundo-secundario: #F3ECE0;
   --cor-superficie: #FFFFFF;
-  --cor-superficie-translucido: rgba(255, 255, 255, 0.92);
+  --cor-superficie-translucido: rgba(255, 255, 255, 0.95);
   --cor-card: #FFFFFF;
-  --cor-card-translucido: rgba(255, 255, 255, 0.88);
-  --cor-card-elevado: #F7F1E6;
-  --cor-texto-principal: #1A0E24;
-  --cor-texto-secundario: #4B385D;
-  --cor-texto-mutado: #78638B;
-  --cor-borda-suave: rgba(184, 134, 11, 0.22);
-  --cor-borda-destaque: rgba(184, 134, 11, 0.5);
-  --cor-dourado: #B8860B;
-  --cor-sombra: 0 10px 25px -5px rgba(184, 134, 11, 0.12);
-  --cor-nav-blur: rgba(250, 247, 242, 0.92);
-  --cor-gradiente-foto: linear-gradient(to top, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.4) 60%, transparent 100%);
+  --cor-card-translucido: rgba(255, 255, 255, 0.92);
+  --cor-card-elevado: #EDE4D3;
+  --cor-texto-principal: #0D0417;
+  --cor-texto-secundario: #28143A;
+  --cor-texto-mutado: #543C66;
+  --cor-borda-suave: rgba(133, 82, 2, 0.25);
+  --cor-borda-destaque: rgba(133, 82, 2, 0.55);
+  --cor-dourado: #855202;
+  --cor-sombra: 0 10px 25px -5px rgba(13, 4, 23, 0.08);
+  --cor-nav-blur: rgba(251, 249, 245, 0.95);
+  --cor-gradiente-foto: transparent;
 }
 
 @layer base {
@@ -153,9 +153,10 @@ body.tema-claro {
 }
 
 .tema-claro .text-gold-gradient {
-  background: linear-gradient(135deg, #8B6508 0%, #B8860B 50%, #D4AF37 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, #5A3800 0%, #855202 50%, #B87E14 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-weight: 800 !important;
 }
 
 .bg-gold-gradient {
@@ -172,6 +173,77 @@ body.tema-claro {
 .glass-card:hover {
   border-color: var(--cor-borda-destaque);
   box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4), 0 0 20px -5px rgba(223, 177, 91, 0.2);
+}
+
+.tema-claro .glass-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(133, 82, 2, 0.22) !important;
+  box-shadow: 0 4px 20px -2px rgba(13, 4, 23, 0.06), 0 2px 6px -1px rgba(133, 82, 2, 0.08) !important;
+}
+
+.tema-claro .glass-card:hover {
+  border-color: rgba(133, 82, 2, 0.5) !important;
+  box-shadow: 0 16px 36px -4px rgba(13, 4, 23, 0.12), 0 4px 12px -2px rgba(133, 82, 2, 0.16) !important;
+}
+
+/* Regras de Alto Contraste e Destaque Visual para o Modo Claro */
+.tema-claro h1,
+.tema-claro h2,
+.tema-claro h3,
+.tema-claro h4 {
+  color: #0D0417 !important;
+  font-weight: 700 !important;
+}
+
+.tema-claro p,
+.tema-claro li {
+  color: #28143A;
+}
+
+.tema-claro .texto-principal {
+  color: #0D0417 !important;
+}
+
+.tema-claro .texto-secundario {
+  color: #28143A !important;
+  font-weight: 450 !important;
+}
+
+.tema-claro .texto-mutado {
+  color: #543C66 !important;
+}
+
+.tema-claro .font-light {
+  font-weight: 400 !important;
+}
+
+.tema-claro .text-\[\#DFB15B\] {
+  color: #855202 !important;
+  font-weight: 600;
+}
+
+.tema-claro .text-\[\#D4C8DE\] {
+  color: #28143A !important;
+}
+
+.tema-claro .text-\[\#FDFCFA\] {
+  color: #0D0417 !important;
+}
+
+.tema-claro .border-\[\#DFB15B\]\/40,
+.tema-claro .border-\[\#DFB15B\]\/30,
+.tema-claro .border-\[\#DFB15B\]\/20,
+.tema-claro .border-\[\#DFB15B\]\/35 {
+  border-color: rgba(133, 82, 2, 0.3) !important;
+}
+
+.tema-claro .bg-\[\#1E1229\],
+.tema-claro .bg-\[\#180E21\] {
+  background-color: #FFFFFF !important;
+}
+
+.tema-claro .bg-\[\#231530\] {
+  background-color: #EDE4D3 !important;
 }
 
 /* Animação suave para botão magnético */

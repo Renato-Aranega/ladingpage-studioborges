@@ -93,7 +93,6 @@ export const Hero: React.FC = () => {
                   alt="Amanda Borges - Lash Designer Studio Borges"
                   className="w-full h-full object-cover object-center filter brightness-[0.98] hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 gradiente-foto" />
 
                 {/* Card Inferior Flutuante com Nome e Instagram */}
                 <div className="absolute bottom-5 left-5 right-5 text-left fundo-superficie-translucido backdrop-blur-md p-4 rounded-xl border borda-destaque shadow-lg">

@@ -114,7 +114,7 @@ export const LashCatalog: React.FC = () => {
                   </div>
                 )}
 
-                {/* Imagem do Procedimento em Proporção Vertical Perfeita (4:5) */}
+                {/* Imagem do Procedimento em Proporção Vertical Perfeita (4:5) Sem Bloom */}
                 <div className="relative aspect-[4/5] overflow-hidden fundo-superficie">
                   <img
                     src={servico.imagem}
@@ -122,7 +122,6 @@ export const LashCatalog: React.FC = () => {
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 gradiente-foto" />
 
                   {/* Tag de destaque */}
                   {servico.destaque && (
@@ -132,27 +131,27 @@ export const LashCatalog: React.FC = () => {
                     </div>
                   )}
 
+                  {/* Preço em Badge Nobre Flutuante com Alta Nitidez */}
+                  <div className="absolute bottom-3 left-3 z-10 bg-[#0F0814]/85 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#DFB15B]/35 shadow-lg text-left">
+                    <span className="text-lg font-serif font-bold text-[#FDFCFA] leading-none block">
+                      R$ {servico.preco.toFixed(2).replace('.', ',')}
+                    </span>
+                    <span className="text-[10px] text-[#DFB15B] font-semibold block mt-0.5">
+                      ou R$ {precoPix.toFixed(2).replace('.', ',')} no Pix (5% OFF)
+                    </span>
+                  </div>
+
                   {/* Botão de Lupa para Ampliar Foto */}
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       definirFotoModal(servico);
                     }}
-                    className="absolute bottom-3 right-3 p-2 rounded-xl fundo-superficie border borda-destaque text-[#DFB15B] shadow-md transition-all hover:scale-110 cursor-pointer"
+                    className="absolute bottom-3 right-3 z-10 p-2.5 rounded-xl bg-[#0F0814]/85 backdrop-blur-md border border-[#DFB15B]/35 text-[#DFB15B] shadow-lg transition-all hover:scale-110 cursor-pointer"
                     aria-label={`Ver foto ampliada de ${servico.nome}`}
                   >
                     <ZoomIn className="w-4 h-4" />
                   </button>
-
-                  {/* Preço em Destaque sobre a Imagem */}
-                  <div className="absolute bottom-3 left-4">
-                    <span className="text-2xl font-serif font-bold texto-principal">
-                      R$ {servico.preco.toFixed(2).replace('.', ',')}
-                    </span>
-                    <span className="block text-[11px] text-[#DFB15B] font-semibold">
-                      ou R$ {precoPix.toFixed(2).replace('.', ',')} no Pix (5% OFF)
-                    </span>
-                  </div>
                 </div>
 
                 {/* Conteúdo do Card */}
