@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "runId": "20261111-025734-744",
+  "strategy": "merge",
+  "toolkitVersion": "2026.8.31",
+  "createdAt": "2026-11-11T02:57:36.004Z",
+  "backupDir": "C:\\PROJETOS\\ladingpagecatalago-studio\\.ag-kit-backups\\20261111-025734-744",
+  "summary": {
+    "actions": 0,
+    "conflicts": 0,
+    "preserved": 0,
+    "unchanged": 221
+  },
+  "actions": [],
+  "conflicts": [],
+  "preserved": []
+}

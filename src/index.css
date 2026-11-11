@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-gold: #DFB15B;
+  --color-primary-gold-champagne: #F5E6C4;
+  --color-primary-gold-dark: #997D2B;
+  --color-purple-deep: #0F0814;
+  --color-purple-surface: #180E21;
+  --color-purple-elevated: #231530;
+  --color-purple-card: #1E1229;
+  --color-purple-accent: #A855F7;
+  --color-purple-royal: #7E22CE;
+  --color-text-secondary: #D4C8DE;
+  --color-text-muted: #8E7F9B;
+  --color-whatsapp: #25D366;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: #0F0814;
+    color: #FDFCFA;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+}
+
+/* Regal Purple & Gold Utilities */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FFF1D0 0%, #DFB15B 50%, #B38E36 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-purple-gold-gradient {
+  background: linear-gradient(135deg, #F3E8FF 0%, #DFB15B 60%, #E9D5FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #DFB15B 0%, #C89D42 50%, #997D2B 100%);
+}
+
+.bg-purple-gold-gradient {
+  background: linear-gradient(135deg, #7E22CE 0%, #9333EA 40%, #DFB15B 100%);
+}
+
+.border-gold-subtle {
+  border-color: rgba(223, 177, 91, 0.25);
+}
+
+.border-purple-subtle {
+  border-color: rgba(168, 85, 247, 0.25);
+}
+
+.border-gold-glow {
+  border-color: rgba(223, 177, 91, 0.45);
+  box-shadow: 0 0 25px -5px rgba(223, 177, 91, 0.2), 0 0 15px -3px rgba(168, 85, 247, 0.2);
+}
+
+.glass-card {
+  background: rgba(24, 14, 33, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(223, 177, 91, 0.18);
+}
+
+.glass-card:hover {
+  border-color: rgba(223, 177, 91, 0.4);
+  box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.8), 0 0 25px -5px rgba(168, 85, 247, 0.2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0F0814;
+}
+::-webkit-scrollbar-thumb {
+  background: #2E1B3D;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #DFB15B;
+}
