@@ -12,17 +12,17 @@ export const LocationSection: React.FC = () => {
     <section
       id="localizacao"
       ref={referenciaSecao}
-      className="bg-[#F1EAF8] py-20 lg:py-24 border-t border-[var(--borda-suave)]"
+      className="bg-[#F1EAF8] py-14 sm:py-20 lg:py-24 border-t border-[var(--borda-suave)]"
     >
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-center">
           {/* Endereço e Informações */}
-          <div className="lg:col-span-5 space-y-6 revelar-scroll">
+          <div className="lg:col-span-5 space-y-5 sm:space-y-6 revelar-scroll">
             <div>
-              <span className="text-xs uppercase tracking-[0.2em] text-[#6F4B9E] font-medium block">
+              <span className="hidden sm:block text-xs uppercase tracking-[0.2em] text-[#6F4B9E] font-medium">
                 Localização
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl text-[#261835] mt-1">
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#261835] sm:mt-1">
                 Como chegar
               </h2>
             </div>
@@ -55,7 +55,7 @@ export const LocationSection: React.FC = () => {
               href={DADOS_STUDIO.urlMapaBusca}
               target="_blank"
               rel="noopener noreferrer"
-              className="botao-dourado px-7 py-3.5"
+              className="botao-dourado w-full sm:w-auto px-7 py-3.5"
             >
               Abrir no Google Maps
             </a>
@@ -69,7 +69,7 @@ export const LocationSection: React.FC = () => {
             <iframe
               title="Localização Studio Borges em Osasco"
               src="https://maps.google.com/maps?q=Rua+Ulisses+Soares,+12+-+Pestana,+Osasco+-+SP&t=&z=16&ie=UTF8&iwloc=&output=embed"
-              className="w-full min-h-[340px] sm:min-h-[380px] border-0 saturate-[0.85]"
+              className="w-full h-56 sm:h-[360px] border-0 saturate-[0.85]"
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

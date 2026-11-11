@@ -39,18 +39,18 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         rolouPagina || menuAberto
-          ? 'bg-[#FAF8FC]/95 backdrop-blur-md border-b border-[var(--borda-suave)] py-3.5'
-          : 'bg-transparent py-5'
+          ? 'bg-[#FAF8FC]/95 backdrop-blur-md border-b border-[var(--borda-suave)] py-3 sm:py-3.5'
+          : 'bg-[#FAF8FC]/85 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none py-3.5 sm:py-5'
       }`}
     >
-      <nav aria-label="Navegação Principal" className="max-w-6xl mx-auto px-6">
-        <div className="flex items-center justify-between gap-6">
+      <nav aria-label="Navegação Principal" className="max-w-6xl mx-auto px-5 sm:px-6">
+        <div className="flex items-center justify-between gap-4 sm:gap-6">
           {/* Marca */}
           <a href="#inicio" className="flex flex-col">
-            <span className="font-serif text-xl sm:text-2xl text-[#261835] leading-none tracking-tight">
+            <span className="font-serif text-lg sm:text-2xl text-[#261835] leading-none tracking-tight">
               Studio Borges
             </span>
-            <span className="text-[10px] tracking-[0.22em] uppercase text-[#8A651D] mt-1 font-medium">
+            <span className="hidden sm:block text-[10px] tracking-[0.22em] uppercase text-[#8A651D] mt-1 font-medium">
               Amanda Borges
             </span>
           </a>

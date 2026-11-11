@@ -13,12 +13,12 @@ export const About: React.FC = () => {
     <section
       id="sobre"
       ref={referenciaSecao}
-      className="bg-[#FAF8FC] py-20 lg:py-24 border-t border-[var(--borda-suave)]"
+      className="bg-[#FAF8FC] py-14 sm:py-20 lg:py-24 border-t border-[var(--borda-suave)]"
     >
-      <div className="max-w-6xl mx-auto px-6 space-y-16">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 space-y-10 sm:space-y-16">
         {/* Sobre Amanda Borges */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          <div className="lg:col-span-5 revelar-scroll">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          <div className="hidden lg:block lg:col-span-5 revelar-scroll">
             <div className="imagem-cortina aspect-[4/5] bg-[#F1EAF8] border border-[var(--borda-suave)]">
               <img
                 src="/images/studio/volume-hibrido.jpg"
@@ -30,10 +30,10 @@ export const About: React.FC = () => {
           </div>
 
           <div
-            className="lg:col-span-7 space-y-5 revelar-scroll"
+            className="lg:col-span-7 space-y-4 sm:space-y-5 revelar-scroll"
             style={{ '--atraso': '80ms' } as React.CSSProperties}
           >
-            <span className="text-xs uppercase tracking-[0.2em] text-[#6F4B9E] font-medium block">
+            <span className="hidden sm:block text-xs uppercase tracking-[0.2em] text-[#6F4B9E] font-medium">
               Sobre o Studio
             </span>
 
@@ -47,7 +47,7 @@ export const About: React.FC = () => {
               personalizado para entregar leveza, retenção e conforto do início ao fim da sessão.
             </p>
 
-            <div className="pt-3 flex flex-wrap gap-x-6 gap-y-2 text-xs text-[#6F4B9E] font-medium">
+            <div className="pt-2 flex flex-wrap gap-x-5 gap-y-2 text-xs text-[#6F4B9E] font-medium">
               <span>• Biossegurança total</span>
               <span>• Produtos Anvisa</span>
               <span>• Atendimento individual</span>
@@ -57,16 +57,16 @@ export const About: React.FC = () => {
         </div>
 
         {/* Orientações Essenciais Enxutas */}
-        <div className="pt-12 border-t border-[var(--borda-suave)] revelar-scroll">
-          <h3 className="font-serif text-2xl text-[#261835] mb-6">
+        <div className="pt-8 sm:pt-12 border-t border-[var(--borda-suave)] revelar-scroll">
+          <h3 className="font-serif text-2xl text-[#261835] mb-4 sm:mb-6">
             Orientações de Atendimento
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="divide-y divide-[var(--borda-suave)] sm:divide-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
             {REGRAS_ATENDIMENTO.map((regra) => (
               <div
                 key={regra.titulo}
-                className="space-y-1.5 pt-3 border-t border-[var(--borda-dourada)]"
+                className="space-y-1 py-3 sm:py-0 sm:pt-3 sm:border-t sm:border-[var(--borda-dourada)]"
               >
                 <p className="text-sm font-semibold text-[#261835]">{regra.titulo}</p>
                 <p className="text-xs text-[#5E4D70] leading-relaxed">{regra.detalhe}</p>

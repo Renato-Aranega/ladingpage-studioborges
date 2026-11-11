@@ -32,15 +32,15 @@ export const MaintenanceTable: React.FC = () => {
     <section
       id="manutencao"
       ref={referenciaSecao}
-      className="bg-[#F1EAF8] py-20 lg:py-24 border-t border-[var(--borda-suave)]"
+      className="bg-[#F1EAF8] py-14 sm:py-20 lg:py-24 border-t border-[var(--borda-suave)]"
     >
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 border-b border-[var(--borda-suave)] mb-12 revelar-scroll">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-2 sm:gap-4 pb-6 sm:pb-8 border-b border-[var(--borda-suave)] mb-8 sm:mb-12 revelar-scroll">
           <div>
-            <span className="text-xs uppercase tracking-[0.2em] text-[#6F4B9E] font-medium block">
+            <span className="hidden sm:block text-xs uppercase tracking-[0.2em] text-[#6F4B9E] font-medium">
               Cuidado Contínuo
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#261835] mt-1">
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#261835] sm:mt-1">
               Manutenção Periódica
             </h2>
           </div>
@@ -52,7 +52,7 @@ export const MaintenanceTable: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Simulador Rápido */}
-          <div className="lg:col-span-5 bg-white border border-[var(--borda-suave)] rounded-xl p-6 sm:p-7 space-y-6 revelar-scroll">
+          <div className="lg:col-span-5 bg-white border border-[var(--borda-suave)] rounded-xl p-5 sm:p-7 space-y-5 sm:space-y-6 revelar-scroll">
             <div>
               <span className="text-[11px] uppercase tracking-[0.16em] text-[#6F4B9E] font-semibold block mb-2.5">
                 1. Técnica
@@ -131,9 +131,9 @@ export const MaintenanceTable: React.FC = () => {
             </a>
           </div>
 
-          {/* Tabela Direta de Valores */}
+          {/* Tabela Direta de Valores (Desktop para evitar redundância no mobile) */}
           <div
-            className="lg:col-span-7 bg-white border border-[var(--borda-suave)] rounded-xl overflow-hidden revelar-scroll"
+            className="hidden lg:block lg:col-span-7 bg-white border border-[var(--borda-suave)] rounded-xl overflow-hidden revelar-scroll"
             style={{ '--atraso': '100ms' } as React.CSSProperties}
           >
             <div className="overflow-x-auto">

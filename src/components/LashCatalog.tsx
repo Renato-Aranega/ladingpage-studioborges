@@ -5,85 +5,45 @@ import { usarRevelacaoScroll } from '../hooks/useRevelacaoScroll';
 
 /**
  * Catálogo Enxuto de Extensões de Cílios
- * Fundo lilás suave (#F1EAF8) com foco visual nas fotos, nomes e preços.
+ * Grade de 2 colunas no mobile para leitura rápida e fotos limpas sem poluição.
  */
 export const LashCatalog: React.FC = () => {
-  const [filtroAtivo, definirFiltroAtivo] = useState<'todos' | 'naturais' | 'volume' | 'tendencia'>('todos');
   const [fotoModal, definirFotoModal] = useState<ServicoCilios | null>(null);
-  const referenciaSecao = usarRevelacaoScroll(filtroAtivo);
-
-  const filtros: { id: 'todos' | 'naturais' | 'volume' | 'tendencia'; rotulo: string }[] = [
-    { id: 'todos', rotulo: 'Todos (6)' },
-    { id: 'naturais', rotulo: 'Naturais' },
-    { id: 'volume', rotulo: 'Volume' },
-    { id: 'tendencia', rotulo: 'Lifting & Power' },
-  ];
-
-  const servicosFiltrados = SERVICOS_CILIOS.filter((servico) => {
-    if (filtroAtivo === 'todos') return true;
-    if (filtroAtivo === 'naturais') return ['volume-brasileiro', 'volume-egipcio'].includes(servico.id);
-    if (filtroAtivo === 'volume') return ['volume-hibrido', 'volume-russo'].includes(servico.id);
-    if (filtroAtivo === 'tendencia') return ['fox-eyes', 'volume-power'].includes(servico.id);
-    return true;
-  });
+  const referenciaSecao = usarRevelacaoScroll();
 
   return (
     <section
       id="cilios"
       ref={referenciaSecao}
-      className="bg-[#F1EAF8] py-20 lg:py-24 border-t border-[var(--borda-suave)]"
+      className="bg-[#F1EAF8] py-14 sm:py-20 lg:py-24 border-t border-[var(--borda-suave)]"
     >
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6">
         {/* Cabeçalho Limpo */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 border-b border-[var(--borda-suave)] revelar-scroll">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-2 sm:gap-4 pb-6 sm:pb-8 border-b border-[var(--borda-suave)] mb-8 sm:mb-12 revelar-scroll">
           <div>
-            <span className="text-xs uppercase tracking-[0.2em] text-[#6F4B9E] font-medium block">
+            <span className="hidden sm:block text-xs uppercase tracking-[0.2em] text-[#6F4B9E] font-medium">
               Catálogo
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-[#261835] mt-1">
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#261835] sm:mt-1">
               Extensões de Cílios
             </h2>
           </div>
 
           <p className="text-xs sm:text-sm text-[#5E4D70]">
-            5% OFF no Pix ou dinheiro • Toque na foto para ampliar
+            5% OFF no Pix ou dinheiro
           </p>
         </div>
 
-        {/* Filtros Discretos */}
-        <div className="flex items-center gap-6 py-5 mb-8 overflow-x-auto">
-          {filtros.map((filtro) => {
-            const ativo = filtroAtivo === filtro.id;
-            return (
-              <button
-                key={filtro.id}
-                type="button"
-                onClick={() => definirFiltroAtivo(filtro.id)}
-                className={`relative py-1 text-xs uppercase tracking-[0.14em] whitespace-nowrap transition-colors cursor-pointer ${
-                  ativo ? 'text-[#261835] font-semibold' : 'text-[#5E4D70] hover:text-[#261835]'
-                }`}
-              >
-                {filtro.rotulo}
-                <span
-                  className={`absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#C49B4B] origin-left transition-transform duration-300 ${
-                    ativo ? 'scale-x-100' : 'scale-x-0'
-                  }`}
-                />
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Grade Limpa: Foto + Título + Preço + 1 Linha */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-          {servicosFiltrados.map((servico, indice) => {
+        {/* Grade 2 colunas no mobile / 3 colunas no desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-3.5 gap-y-7 sm:gap-x-8 sm:gap-y-12">
+          {SERVICOS_CILIOS.map((servico, indice) => {
             const precoPix = servico.preco * 0.95;
 
             return (
               <article
                 key={servico.id}
                 className="group revelar-scroll"
-                style={{ '--atraso': `${(indice % 3) * 80}ms` } as React.CSSProperties}
+                style={{ '--atraso': `${(indice % 3) * 60}ms` } as React.CSSProperties}
               >
                 <div className="relative imagem-cortina aspect-[4/5] bg-white border border-[var(--borda-suave)]">
                   <button
@@ -99,29 +59,29 @@ export const LashCatalog: React.FC = () => {
                       loading="lazy"
                     />
                     {servico.destaque && (
-                      <span className="absolute top-3 left-3 bg-[#FAF8FC]/92 text-[#6F4B9E] px-2.5 py-1 rounded text-[10px] uppercase tracking-[0.14em] font-semibold">
+                      <span className="hidden sm:inline-block absolute top-3 left-3 bg-[#FAF8FC]/92 text-[#6F4B9E] px-2.5 py-1 rounded text-[10px] uppercase tracking-[0.14em] font-semibold">
                         {servico.destaque}
                       </span>
                     )}
                   </button>
                 </div>
 
-                {/* Título e Preço na Mesma Linha */}
-                <div className="pt-4 pb-2 flex items-baseline justify-between gap-3 border-b border-[var(--borda-suave)]">
-                  <h3 className="font-serif text-2xl text-[#261835] leading-tight">
+                {/* Título e Preço */}
+                <div className="pt-2.5 sm:pt-4 pb-1.5 sm:pb-2 flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-3 border-b border-[var(--borda-suave)]">
+                  <h3 className="font-serif text-lg sm:text-2xl text-[#261835] leading-snug">
                     {servico.nome}
                   </h3>
-                  <div className="text-right shrink-0 numeral-tabular">
-                    <span className="font-serif text-2xl text-[#261835] block leading-none">
+                  <div className="sm:text-right shrink-0 numeral-tabular flex items-baseline sm:block gap-2">
+                    <span className="font-serif text-lg sm:text-2xl text-[#261835] sm:block leading-none">
                       R$ {servico.preco.toFixed(0)}
                     </span>
-                    <span className="text-[11px] text-[#8A651D] font-medium block mt-1">
-                      R$ {precoPix.toFixed(2).replace('.', ',')} no Pix
+                    <span className="text-[10px] sm:text-[11px] text-[#8A651D] font-medium sm:block sm:mt-1">
+                      R$ {precoPix.toFixed(2).replace('.', ',')} Pix
                     </span>
                   </div>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#5E4D70] mt-2.5 leading-relaxed">
+                <p className="hidden sm:block text-sm text-[#5E4D70] mt-2.5 leading-relaxed">
                   {servico.descricao}
                 </p>
               </article>
@@ -129,16 +89,16 @@ export const LashCatalog: React.FC = () => {
           })}
         </div>
 
-        {/* Botão Único ao Final do Catálogo */}
-        <div className="mt-14 pt-8 border-t border-[var(--borda-suave)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <p className="text-xs sm:text-sm text-[#5E4D70]">
+        {/* Botão Único ao Final */}
+        <div className="mt-10 sm:mt-14 pt-6 sm:pt-8 border-t border-[var(--borda-suave)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <p className="hidden sm:block text-sm text-[#5E4D70]">
             Dúvida na escolha? Definimos a técnica ideal na avaliação inicial gratuita.
           </p>
           <a
             href={obterLinkWhatsApp('Agendar Extensão de Cílios')}
             target="_blank"
             rel="noopener noreferrer"
-            className="botao-dourado px-7 py-3.5 shrink-0"
+            className="botao-dourado w-full sm:w-auto px-7 py-3.5 shrink-0"
           >
             Agendar Cílios no WhatsApp
           </a>

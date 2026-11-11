@@ -6,8 +6,8 @@ import { DADOS_STUDIO, obterLinkWhatsApp } from '../data/catalog';
  */
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#FAF8FC] border-t border-[var(--borda-suave)] py-10 text-xs text-[#5E4D70]">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <footer className="bg-[#FAF8FC] border-t border-[var(--borda-suave)] py-8 sm:py-10 text-xs text-[#5E4D70]">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <span className="font-serif text-lg text-[#261835] block leading-none">
             Studio Borges
