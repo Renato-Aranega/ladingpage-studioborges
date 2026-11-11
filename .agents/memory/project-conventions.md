@@ -8,7 +8,11 @@ updated: 2026-07-12
 
 ## Git Workflow
 - Always create a new dedicated branch for major code changes.
-- Branch name format should follow: `feature/[task-slug]` or `fix/[bug-slug]`.
+- Branch name format should follow: `feature/[task-slug]` or `fix/[bug-slug]` or branch em português (ex: `desenvolve`, `funcionalidade/...`).
+- Mensagens de commit sempre em Português Brasileiro no padrão Conventional Commits (ex: `feat:`, `fix:`, `refactor:`).
+
+## Idioma e Código (Português Brasileiro)
+- Todos os comentários de código e nomes de variáveis devem ser escritos em Português Brasileiro fácil e limpo, conforme solicitação explícita do usuário.
 
 ## Supported AI platforms (AG Kit)
 - AG Kit **only supports Gemini CLI and Google Antigravity**.
