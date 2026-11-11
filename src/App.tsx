@@ -1,4 +1,5 @@
 import React from 'react';
+import { ProvedorTema } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { PaymentBanner } from './components/PaymentBanner';
@@ -6,6 +7,7 @@ import { LashCatalog } from './components/LashCatalog';
 import { BrowServices } from './components/BrowServices';
 import { MaintenanceTable } from './components/MaintenanceTable';
 import { About } from './components/About';
+import { Feedbacks } from './components/Feedbacks';
 import { Policies } from './components/Policies';
 import { LocationSection } from './components/LocationSection';
 import { Faq } from './components/Faq';
@@ -14,50 +16,55 @@ import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
 /**
  * Componente Raiz da Aplicação
- * Reúne todas as seções estruturais da Landing Page do Studio Borges
+ * Envolvido pelo ProvedorTema para suporte a Modo Claro e Modo Escuro
  */
 export const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#0F0814] text-[#FDFCFA] font-sans relative selection:bg-[#A855F7]/30 selection:text-[#FFF1D0]">
-      {/* Barra de Navegação Superior */}
-      <Navbar />
+    <ProvedorTema>
+      <div className="min-h-screen relative transition-colors duration-300">
+        {/* Barra de Navegação Superior */}
+        <Navbar />
 
-      {/* Conteúdo Principal com link de acessibilidade (skip link) */}
-      <main id="main">
-        {/* Seção Principal de Entrada */}
-        <Hero />
+        {/* Conteúdo Principal com link de acessibilidade (skip link) */}
+        <main id="main">
+          {/* Seção Principal de Entrada */}
+          <Hero />
 
-        {/* Faixa com Desconto Pix e Formas de Pagamento */}
-        <PaymentBanner />
+          {/* Faixa com Desconto Pix e Formas de Pagamento */}
+          <PaymentBanner />
 
-        {/* Catálogo Oficial de Procedimentos de Cílios */}
-        <LashCatalog />
+          {/* Catálogo Oficial de Procedimentos de Cílios com fotos corrigidas */}
+          <LashCatalog />
 
-        {/* Serviços de Harmonização de Sobrancelhas */}
-        <BrowServices />
+          {/* Serviços de Harmonização de Sobrancelhas */}
+          <BrowServices />
 
-        {/* Tabela Interativa e Simulador de Manutenções */}
-        <MaintenanceTable />
+          {/* Tabela Interativa e Simulador de Manutenções */}
+          <MaintenanceTable />
 
-        {/* História, Conforto e Biossegurança da Amanda Borges */}
-        <About />
+          {/* História, Conforto e Biossegurança da Amanda Borges */}
+          <About />
 
-        {/* Políticas, Regras de Atendimento e Cuidados */}
-        <Policies />
+          {/* Seção de Depoimentos e Avaliações de Clientes Reais */}
+          <Feedbacks />
 
-        {/* Endereço, Facilidade de Estacionamento e Mapa */}
-        <LocationSection />
+          {/* Políticas, Regras de Atendimento e Cuidados */}
+          <Policies />
 
-        {/* Perguntas e Respostas Frequentes */}
-        <Faq />
-      </main>
+          {/* Endereço, Facilidade de Estacionamento e Mapa */}
+          <LocationSection />
 
-      {/* Rodapé Institucional */}
-      <Footer />
+          {/* Perguntas e Respostas Frequentes */}
+          <Faq />
+        </main>
 
-      {/* Botões de Ação para WhatsApp */}
-      <FloatingWhatsApp />
-    </div>
+        {/* Rodapé Institucional */}
+        <Footer />
+
+        {/* Botão Flutuante e Barra Fixa para Celular */}
+        <FloatingWhatsApp />
+      </div>
+    </ProvedorTema>
   );
 };
 

@@ -4,7 +4,7 @@ import { obterLinkWhatsApp } from '../data/catalog';
 
 /**
  * Botão Flutuante e Barra Fixa de Conversão para WhatsApp
- * Exibe botão flutuante no computador e barra fixa inferior para celular
+ * Otimizado especialmente para Mobile UX com toques ergonômicos e botão magnético
  */
 export const FloatingWhatsApp: React.FC = () => {
   return (
@@ -33,25 +33,25 @@ export const FloatingWhatsApp: React.FC = () => {
         </a>
       </div>
 
-      {/* Barra Fixa Inferior para Celular (Mobile-First) */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#180E21]/95 backdrop-blur-md border-t border-[#DFB15B]/30 p-3 shadow-2xl">
-        <div className="flex items-center gap-2">
+      {/* Barra Fixa Inferior para Celular (Mobile-First de Alta Conversão) */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#180E21]/95 backdrop-blur-lg border-t border-[#DFB15B]/35 px-4 py-3 shadow-[0_-5px_25px_rgba(0,0,0,0.5)]">
+        <div className="flex items-center gap-2.5 max-w-md mx-auto">
           <a
             href="#cilios"
-            className="flex-1 flex items-center justify-center gap-1.5 py-3 px-3 rounded-xl bg-[#231530] text-[#FDFCFA] text-xs font-semibold border border-[#2E1B3D]"
+            className="flex-1 flex items-center justify-center gap-1.5 py-3 px-2 rounded-xl bg-[#231530] text-[#FDFCFA] text-xs font-semibold border border-[#2E1B3D] active:scale-95 transition-transform"
           >
             <Calendar className="w-4 h-4 text-[#DFB15B]" />
-            <span>Ver Serviços</span>
+            <span>Serviços</span>
           </a>
 
           <a
             href={obterLinkWhatsApp()}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-[1.5] flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-gold-gradient text-[#0F0814] text-xs font-bold shadow-lg"
+            className="flex-[2] flex items-center justify-center gap-2 py-3 px-3 rounded-xl bg-gold-gradient text-[#0F0814] text-xs font-black uppercase tracking-wide shadow-xl active:scale-95 transition-transform botao-magnetico"
           >
             <MessageCircle className="w-4 h-4 fill-[#0F0814]" />
-            <span>Agendar WhatsApp</span>
+            <span>Agendar no WhatsApp</span>
           </a>
         </div>
       </div>

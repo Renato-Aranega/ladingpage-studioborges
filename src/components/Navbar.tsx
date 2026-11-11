@@ -1,34 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle, Menu, X, MapPin, Percent } from 'lucide-react';
+import { MessageCircle, Menu, X, MapPin, Percent, Sun, Moon } from 'lucide-react';
 import { DADOS_STUDIO, obterLinkWhatsApp } from '../data/catalog';
+import { usarTema } from '../context/ThemeContext';
 
 /**
  * Componente da Barra de Navegação Principal
- * Contém aviso superior com desconto Pix, links de navegação e botão para WhatsApp
+ * Com indicador ativo de rolagem (ScrollSpy), alternador de modo claro/escuro
+ * e botão magnético de agendamento.
  */
 export const Navbar: React.FC = () => {
-  // Estado para detectar se o usuário rolou a página para aplicar fundo com desfoque
+  // Estado para detectar se o usuário rolou a página
   const [rolouPagina, definirRolouPagina] = useState(false);
   // Estado para controlar abertura do menu no celular
   const [menuAberto, definirMenuAberto] = useState(false);
+  // Seção ativa atualmente na tela (ScrollSpy)
+  const [secaoAtiva, definirSecaoAtiva] = useState<string>('cilios');
+
+  // Contexto do tema (modo claro / escuro)
+  const { tema, alternarTema } = usarTema();
+
+  // Links do menu com âncoras para as seções
+  const linksNavegacao = [
+    { id: 'cilios', nome: 'Cílios', destino: '#cilios' },
+    { id: 'sobrancelhas', nome: 'Sobrancelhas', destino: '#sobrancelhas' },
+    { id: 'manutencao', nome: 'Manutenção', destino: '#manutencao' },
+    { id: 'sobre', nome: 'Sobre Amanda', destino: '#sobre' },
+    { id: 'feedbacks', nome: 'Avaliações', destino: '#feedbacks' },
+    { id: 'politicas', nome: 'Políticas', destino: '#politicas' },
+    { id: 'localizacao', nome: 'Localização', destino: '#localizacao' },
+  ];
 
   useEffect(() => {
     const monitorarRolagem = () => {
       definirRolouPagina(window.scrollY > 20);
+
+      // ScrollSpy: identifica qual seção está no campo de visão
+      const secoes = linksNavegacao.map((item) => document.getElementById(item.id));
+      const deslocamentoTopo = window.scrollY + 180;
+
+      for (let i = secoes.length - 1; i >= 0; i--) {
+        const elemento = secoes[i];
+        if (elemento) {
+          const topoSecao = elemento.offsetTop;
+          if (deslocamentoTopo >= topoSecao) {
+            definirSecaoAtiva(linksNavegacao[i].id);
+            break;
+          }
+        }
+      }
     };
-    window.addEventListener('scroll', monitorarRolagem);
+
+    window.addEventListener('scroll', monitorarRolagem, { passive: true });
+    monitorarRolagem();
     return () => window.removeEventListener('scroll', monitorarRolagem);
   }, []);
-
-  // Links do menu com âncoras para as seções
-  const linksNavegacao = [
-    { nome: 'Cílios', destino: '#cilios' },
-    { nome: 'Sobrancelhas', destino: '#sobrancelhas' },
-    { nome: 'Manutenção', destino: '#manutencao' },
-    { nome: 'Sobre Amanda', destino: '#sobre' },
-    { nome: 'Políticas', destino: '#politicas' },
-    { nome: 'Localização', destino: '#localizacao' },
-  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -59,18 +84,19 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Barra de navegação principal */}
+      {/* Barra de navegação principal com efeito Glassmorphism */}
       <nav
         className={`transition-all duration-300 px-4 lg:px-8 ${
           rolouPagina
-            ? 'bg-[#0F0814]/92 backdrop-blur-md border-b border-[#DFB15B]/20 py-3 shadow-2xl'
+            ? 'bg-[#0F0814]/92 backdrop-blur-md border-b border-[#DFB15B]/25 py-3 shadow-2xl'
             : 'bg-transparent py-4'
         }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo e nome da marca */}
+          
+          {/* Logo e Nome da Marca */}
           <a href="#" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full border border-[#DFB15B]/40 overflow-hidden bg-[#180E21] p-0.5 flex items-center justify-center shadow-lg group-hover:border-[#DFB15B] group-hover:shadow-[0_0_15px_rgba(223,177,91,0.3)] transition-all">
+            <div className="w-10 h-10 rounded-full border border-[#DFB15B]/50 overflow-hidden bg-[#180E21] p-0.5 flex items-center justify-center shadow-lg group-hover:border-[#DFB15B] group-hover:shadow-[0_0_15px_rgba(223,177,91,0.4)] transition-all">
               <img
                 src="/images/studio/logo-badge.png"
                 alt="Logo Studio Borges"
@@ -90,27 +116,51 @@ export const Navbar: React.FC = () => {
             </div>
           </a>
 
-          {/* Links para tela de computador */}
-          <div className="hidden md:flex items-center gap-7">
-            {linksNavegacao.map((item) => (
-              <a
-                key={item.nome}
-                href={item.destino}
-                className="text-sm text-[#D4C8DE] hover:text-[#DFB15B] transition-colors font-medium relative group"
-              >
-                {item.nome}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#DFB15B] to-[#A855F7] transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
+          {/* Links para Computador com Indicador da Seção Ativa (ScrollSpy) */}
+          <div className="hidden lg:flex items-center gap-6">
+            {linksNavegacao.map((item) => {
+              const estaAtivo = secaoAtiva === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={item.destino}
+                  className={`text-xs font-semibold tracking-wide transition-all duration-200 relative py-1 px-2.5 rounded-lg ${
+                    estaAtivo
+                      ? 'text-[#DFB15B] bg-[#231530]/80 shadow-[0_0_12px_rgba(223,177,91,0.25)]'
+                      : 'text-[#D4C8DE] hover:text-[#DFB15B]'
+                  }`}
+                >
+                  {item.nome}
+                  {estaAtivo && (
+                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-[#DFB15B] rounded-full shadow-[0_0_8px_#DFB15B]" />
+                  )}
+                </a>
+              );
+            })}
           </div>
 
-          {/* Botão de agendamento prioritário */}
+          {/* Área Direita: Botão de Tema & CTA WhatsApp */}
           <div className="hidden sm:flex items-center gap-3">
+            {/* Alternador de Modo Claro / Escuro */}
+            <button
+              onClick={alternarTema}
+              className="p-2.5 rounded-full bg-[#180E21] border border-[#DFB15B]/35 text-[#DFB15B] hover:scale-110 active:scale-95 transition-all shadow-md"
+              title={tema === 'escuro' ? 'Mudar para Modo Claro' : 'Mudar para Modo Escuro'}
+              aria-label="Alternar tema de cores"
+            >
+              {tema === 'escuro' ? (
+                <Sun className="w-4 h-4 text-[#DFB15B] animate-spin-slow" />
+              ) : (
+                <Moon className="w-4 h-4 text-[#A855F7]" />
+              )}
+            </button>
+
+            {/* Botão de Agendamento Prioritário */}
             <a
               href={obterLinkWhatsApp()}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-semibold rounded-full group bg-gradient-to-br from-[#DFB15B] via-[#C89D42] to-[#7E22CE] text-white shadow-lg hover:shadow-[0_0_20px_rgba(223,177,91,0.35)] transition-all hover:scale-[1.02] active:scale-[0.98]"
+              className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-bold rounded-full group bg-gradient-to-br from-[#DFB15B] via-[#C89D42] to-[#7E22CE] text-white shadow-lg hover:shadow-[0_0_20px_rgba(223,177,91,0.35)] transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
               <span className="px-4 py-2 transition-all ease-in duration-75 bg-[#0F0814] rounded-full group-hover:bg-opacity-0 flex items-center gap-2">
                 <MessageCircle className="w-4 h-4 text-[#25D366] group-hover:text-white transition-colors" />
@@ -119,31 +169,50 @@ export const Navbar: React.FC = () => {
             </a>
           </div>
 
-          {/* Botão de menu para celular */}
-          <button
-            onClick={() => definirMenuAberto(!menuAberto)}
-            className="md:hidden p-2 text-[#D4C8DE] hover:text-[#DFB15B] focus:outline-none"
-            aria-label="Abrir menu de navegação"
-          >
-            {menuAberto ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Botões para Celular: Alternador de Tema + Menu Hambúrguer */}
+          <div className="flex sm:hidden items-center gap-2">
+            <button
+              onClick={alternarTema}
+              className="p-2 rounded-full bg-[#180E21] border border-[#DFB15B]/30 text-[#DFB15B]"
+              aria-label="Alternar tema"
+            >
+              {tema === 'escuro' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4 text-[#A855F7]" />}
+            </button>
+
+            <button
+              onClick={() => definirMenuAberto(!menuAberto)}
+              className="p-2 text-[#D4C8DE] hover:text-[#DFB15B] focus:outline-none"
+              aria-label="Abrir menu de navegação"
+            >
+              {menuAberto ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
-        {/* Menu suspenso para celular */}
+        {/* Menu Suspenso para Celular com Destaque na Seção Ativa */}
         {menuAberto && (
-          <div className="md:hidden bg-[#180E21] border-b border-[#DFB15B]/30 px-6 py-6 mt-3 rounded-2xl shadow-2xl space-y-4">
-            <div className="flex flex-col space-y-3">
-              {linksNavegacao.map((item) => (
-                <a
-                  key={item.nome}
-                  href={item.destino}
-                  onClick={() => definirMenuAberto(false)}
-                  className="text-base text-[#FDFCFA] hover:text-[#DFB15B] py-2 border-b border-[#2E1B3D] font-medium"
-                >
-                  {item.nome}
-                </a>
-              ))}
+          <div className="lg:hidden bg-[#180E21] border-b border-[#DFB15B]/30 px-6 py-6 mt-3 rounded-2xl shadow-2xl space-y-4">
+            <div className="flex flex-col space-y-2">
+              {linksNavegacao.map((item) => {
+                const estaAtivo = secaoAtiva === item.id;
+                return (
+                  <a
+                    key={item.id}
+                    href={item.destino}
+                    onClick={() => definirMenuAberto(false)}
+                    className={`text-base py-2.5 px-3 rounded-xl border-b border-[#2E1B3D] font-medium flex items-center justify-between transition-colors ${
+                      estaAtivo
+                        ? 'text-[#DFB15B] bg-[#231530] font-bold'
+                        : 'text-[#FDFCFA] hover:text-[#DFB15B]'
+                    }`}
+                  >
+                    <span>{item.nome}</span>
+                    {estaAtivo && <span className="text-xs text-[#DFB15B]">● Ativo</span>}
+                  </a>
+                );
+              })}
             </div>
+
             <div className="pt-2">
               <a
                 href={obterLinkWhatsApp()}
@@ -152,7 +221,7 @@ export const Navbar: React.FC = () => {
                 onClick={() => definirMenuAberto(false)}
                 className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gold-gradient text-[#0F0814] font-bold text-sm shadow-md"
               >
-                <MessageCircle className="w-4 h-4" />
+                <MessageCircle className="w-4 h-4 fill-[#0F0814]" />
                 Agendar via WhatsApp
               </a>
             </div>

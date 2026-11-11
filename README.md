@@ -61,3 +61,4 @@ Este projeto foi construído para transformar o catálogo de serviços em uma ex
 - **Instagram**: [@lashamandaborges](https://www.instagram.com/lashamandaborges/)
 - **WhatsApp**: (11) 96839-9735
 - **Endereço**: Rua Ulisses Soares, 12 - Pestana, Osasco - SP
+

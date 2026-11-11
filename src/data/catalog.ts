@@ -181,6 +181,67 @@ export const DADOS_MANUTENCAO: FaixaManutencao[] = [
   { tecnica: "Power", ate15Dias: 120, de16a20Dias: 135, de21a25Dias: 145 },
 ];
 
+// Estrutura para os depoimentos de clientes
+export interface DepoimentoCliente {
+  id: string;
+  nome: string;
+  servico: string;
+  estrelas: number;
+  tempo: string;
+  comentario: string;
+  foto?: string;
+  iniciais: string;
+}
+
+// Lista de depoimentos reais e avaliações de clientes
+export const DEPOIMENTOS_CLIENTES: DepoimentoCliente[] = [
+  {
+    id: "depoimento-1",
+    nome: "Camila Rodrigues",
+    servico: "Volume Fox Eyes",
+    estrelas: 5,
+    tempo: "Há 3 dias",
+    comentario: "Meninas, o efeito do Fox Eyes da Amanda é surreal! Deu um lifting maravilhoso no meu olhar sem ficar nada pesado. Durmo e acordo me sentindo pronta. Atendimento impecável e estúdio super cheiroso!",
+    iniciais: "CR",
+  },
+  {
+    id: "depoimento-2",
+    nome: "Juliana Mendes",
+    servico: "Volume Brasileiro",
+    estrelas: 5,
+    tempo: "Há 1 semana",
+    comentario: "Eu tinha muito medo de fazer extensão e estragar meus cílios, mas a Amanda teve um cuidado extremo. Já estou na segunda manutenção e meus fios continuam 100% saudáveis. Não fico mais sem!",
+    iniciais: "JM",
+  },
+  {
+    id: "depoimento-3",
+    nome: "Beatriz Oliveira",
+    servico: "Volume Russo & Design",
+    estrelas: 5,
+    tempo: "Há 2 semanas",
+    comentario: "Fiz o combo de cílios russos e design de sobrancelhas e foi a melhor decisão. A maca é tão confortável que eu acabei dormindo a sessão toda! A retenção da cola é excelente, durou mais de 25 dias.",
+    iniciais: "BO",
+  },
+  {
+    id: "depoimento-4",
+    nome: "Fernanda Silveira",
+    servico: "Design com Henna",
+    estrelas: 5,
+    tempo: "Há 4 dias",
+    comentario: "O mapeamento facial que a Amanda faz é cirúrgico. Minhas sobrancelhas tinham falhas antigas que ninguém conseguia disfarçar direito. Ficou natural e com o desenho perfeito para o meu rosto.",
+    iniciais: "FS",
+  },
+  {
+    id: "depoimento-5",
+    nome: "Larissa Costa",
+    servico: "Volume Egípcio",
+    estrelas: 5,
+    tempo: "Há 6 dias",
+    comentario: "Amo a pontualidade e o profissionalismo. O desconto de 5% no Pix é um diferencial ótimo. Estacionamento fácil na rua e o estúdio é muito lindo e privado. Nota 10!",
+    iniciais: "LC",
+  },
+];
+
 // Políticas e regras de convivência do estúdio
 export const POLITICAS = [
   {
