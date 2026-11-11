@@ -8,6 +8,7 @@ interface ModalFotoProps {
   titulo: string;
   descricao: string;
   preco: number;
+  observacao?: string;
 }
 
 /**
@@ -20,6 +21,7 @@ export const ModalFoto: React.FC<ModalFotoProps> = ({
   titulo,
   descricao,
   preco,
+  observacao,
 }) => {
   useEffect(() => {
     if (!aberto) return;
@@ -65,6 +67,12 @@ export const ModalFoto: React.FC<ModalFotoProps> = ({
             className="w-full h-full object-contain"
           />
         </div>
+
+        {observacao && (
+          <p className="text-[11px] text-[#6F4B9E] font-medium px-5 py-2.5 bg-[#FAF8FC] border-t border-[var(--borda-suave)] text-center">
+            {observacao}
+          </p>
+        )}
 
         <div className="p-5 bg-white border-t border-[var(--borda-suave)] space-y-4">
           <div className="flex items-baseline justify-between gap-4">

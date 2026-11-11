@@ -57,6 +57,7 @@ export const LashCatalog: React.FC = () => {
                       alt={servico.nome}
                       className="w-full h-full object-cover object-center"
                       loading="lazy"
+                      decoding="async"
                     />
                     {servico.destaque && (
                       <span className="hidden sm:inline-block absolute top-3 left-3 bg-[#FAF8FC]/92 text-[#6F4B9E] px-2.5 py-1 rounded text-[10px] uppercase tracking-[0.14em] font-semibold">

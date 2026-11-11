@@ -1,39 +1,67 @@
 import React, { useState, useEffect } from 'react';
 import { obterLinkWhatsApp } from '../data/catalog';
 
+const LINKS_NAVEGACAO = [
+  { id: 'cilios', nome: 'Cílios', destino: '#cilios' },
+  { id: 'sobrancelhas', nome: 'Sobrancelhas', destino: '#sobrancelhas' },
+  { id: 'manutencao', nome: 'Manutenção', destino: '#manutencao' },
+  { id: 'sobre', nome: 'Sobre', destino: '#sobre' },
+  { id: 'localizacao', nome: 'Localização', destino: '#localizacao' },
+] as const;
+
 /**
  * Barra de Navegação Limpa (Tons Lavanda & Dourado)
+ * ScrollSpy leve via IntersectionObserver e bloqueio de rolagem no menu mobile.
  */
 export const Navbar: React.FC = () => {
   const [rolouPagina, definirRolouPagina] = useState(false);
   const [menuAberto, definirMenuAberto] = useState(false);
   const [secaoAtiva, definirSecaoAtiva] = useState<string>('cilios');
 
-  const linksNavegacao = [
-    { id: 'cilios', nome: 'Cílios', destino: '#cilios' },
-    { id: 'sobrancelhas', nome: 'Sobrancelhas', destino: '#sobrancelhas' },
-    { id: 'manutencao', nome: 'Manutenção', destino: '#manutencao' },
-    { id: 'sobre', nome: 'Sobre', destino: '#sobre' },
-    { id: 'localizacao', nome: 'Localização', destino: '#localizacao' },
-  ];
-
   useEffect(() => {
-    const monitorarRolagem = () => {
-      definirRolouPagina(window.scrollY > 20);
-      const deslocamento = window.scrollY + 180;
-      for (let i = linksNavegacao.length - 1; i >= 0; i--) {
-        const elemento = document.getElementById(linksNavegacao[i].id);
-        if (elemento && deslocamento >= elemento.offsetTop) {
-          definirSecaoAtiva(linksNavegacao[i].id);
-          break;
-        }
-      }
-    };
+    const aoRolar = () => definirRolouPagina(window.scrollY > 20);
+    window.addEventListener('scroll', aoRolar, { passive: true });
+    aoRolar();
 
-    window.addEventListener('scroll', monitorarRolagem, { passive: true });
-    monitorarRolagem();
-    return () => window.removeEventListener('scroll', monitorarRolagem);
+    if (typeof IntersectionObserver === 'undefined') {
+      return () => window.removeEventListener('scroll', aoRolar);
+    }
+
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        for (const entrada of entradas) {
+          if (entrada.isIntersecting) {
+            definirSecaoAtiva(entrada.target.id);
+          }
+        }
+      },
+      { rootMargin: '-35% 0px -55% 0px', threshold: 0 }
+    );
+
+    LINKS_NAVEGACAO.forEach(({ id }) => {
+      const elemento = document.getElementById(id);
+      if (elemento) observador.observe(elemento);
+    });
+
+    return () => {
+      window.removeEventListener('scroll', aoRolar);
+      observador.disconnect();
+    };
   }, []);
+
+  // Trava a rolagem do fundo e fecha com Esc quando o menu mobile está aberto
+  useEffect(() => {
+    if (!menuAberto) return;
+    document.body.style.overflow = 'hidden';
+    const aoPressionarEsc = (evento: KeyboardEvent) => {
+      if (evento.key === 'Escape') definirMenuAberto(false);
+    };
+    window.addEventListener('keydown', aoPressionarEsc);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', aoPressionarEsc);
+    };
+  }, [menuAberto]);
 
   return (
     <header
@@ -57,7 +85,7 @@ export const Navbar: React.FC = () => {
 
           {/* Links Desktop */}
           <div className="hidden md:flex items-center gap-7">
-            {linksNavegacao.map((item) => {
+            {LINKS_NAVEGACAO.map((item) => {
               const estaAtivo = secaoAtiva === item.id;
               return (
                 <a
@@ -107,7 +135,7 @@ export const Navbar: React.FC = () => {
         {menuAberto && (
           <div className="md:hidden mt-4 pt-4 pb-6 border-t border-[var(--borda-suave)] space-y-4">
             <div className="flex flex-col divide-y divide-[var(--borda-suave)]">
-              {linksNavegacao.map((item) => (
+              {LINKS_NAVEGACAO.map((item) => (
                 <a
                   key={item.id}
                   href={item.destino}

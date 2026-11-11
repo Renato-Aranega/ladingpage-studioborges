@@ -20,6 +20,7 @@ export interface ServicoSobrancelha {
   descricao: string;
   preco: number;
   imagem: string;
+  observacao?: string;
 }
 
 export interface FaixaManutencao {
@@ -37,9 +38,7 @@ export const DADOS_STUDIO = {
   telefone: "(11) 96839-9735",
   telefoneLimpo: "5511968399735",
   endereco: "Rua Ulisses Soares, 12 - Pestana, Osasco - SP",
-  urlMapaBusca:
-    "https://maps.google.com/maps?q=" +
-    encodeURIComponent("Rua Ulisses Soares, 12, Pestana, Osasco, SP"),
+  urlMapaBusca: "https://share.google/3aKE1UjJS2xZ65QmF",
   horarioFuncionamento: "Terça a Sábado, das 09h às 19h (com horário marcado)",
   avisoDesconto: "5% OFF no Pix ou dinheiro",
 };
@@ -61,7 +60,7 @@ export function obterLinkWhatsApp(nomeServico?: string): string {
   return `${linkBase}?text=${mensagemPersonalizada}`;
 }
 
-// 6 técnicas de extensão de cílios
+// 6 técnicas de extensão de cílios (imagens WebP otimizadas)
 export const SERVICOS_CILIOS: ServicoCilios[] = [
   {
     id: "volume-brasileiro",
@@ -69,7 +68,7 @@ export const SERVICOS_CILIOS: ServicoCilios[] = [
     slogan: "Naturalidade & leveza",
     descricao: "Fios em Y com acabamento delicado e ótimo caimento para o dia a dia.",
     preco: 150,
-    imagem: "/images/studio/volume-brasileiro.jpg",
+    imagem: "/images/studio/volume-brasileiro.webp",
     destaque: "Mais Pedido",
   },
   {
@@ -78,7 +77,7 @@ export const SERVICOS_CILIOS: ServicoCilios[] = [
     slogan: "Alinhamento marcante",
     descricao: "Fios em W ultraleves para um olhar bem preenchido e uniforme.",
     preco: 160,
-    imagem: "/images/studio/volume-egipcio.jpg",
+    imagem: "/images/studio/volume-egipcio.webp",
   },
   {
     id: "volume-hibrido",
@@ -86,7 +85,7 @@ export const SERVICOS_CILIOS: ServicoCilios[] = [
     slogan: "Clássico + volume",
     descricao: "Mistura equilibrada entre fios clássicos e leques suaves.",
     preco: 170,
-    imagem: "/images/studio/volume-hibrido.jpg",
+    imagem: "/images/studio/volume-hibrido.webp",
   },
   {
     id: "volume-russo",
@@ -94,7 +93,7 @@ export const SERVICOS_CILIOS: ServicoCilios[] = [
     slogan: "Densidade aveludada",
     descricao: "Leques feitos à mão para quem busca um olhar expressivo e cheio.",
     preco: 180,
-    imagem: "/images/studio/volume-russo.png",
+    imagem: "/images/studio/volume-russo.webp",
     destaque: "VIP",
   },
   {
@@ -103,7 +102,7 @@ export const SERVICOS_CILIOS: ServicoCilios[] = [
     slogan: "Efeito lifting alongado",
     descricao: "Alongamento gradual nos cantos externos que eleva e valoriza o olhar.",
     preco: 190,
-    imagem: "/images/studio/fox-eyes.jpg",
+    imagem: "/images/studio/fox-eyes.webp",
     destaque: "Tendência",
   },
   {
@@ -112,11 +111,11 @@ export const SERVICOS_CILIOS: ServicoCilios[] = [
     slogan: "Máxima intensidade",
     descricao: "Super preenchimento ultra-black com impacto visual completo.",
     preco: 200,
-    imagem: "/images/studio/volume-power.jpg",
+    imagem: "/images/studio/volume-power.webp",
   },
 ];
 
-// 3 procedimentos de sobrancelhas
+// 3 procedimentos de sobrancelhas (imagens WebP otimizadas)
 export const SERVICOS_SOBRANCELHAS: ServicoSobrancelha[] = [
   {
     id: "design-sobrancelhas",
@@ -124,7 +123,7 @@ export const SERVICOS_SOBRANCELHAS: ServicoSobrancelha[] = [
     slogan: "Geometria facial",
     descricao: "Mapeamento facial milimétrico para valorizar a simetria natural do rosto.",
     preco: 45,
-    imagem: "/images/studio/design-sobrancelhas.jpg",
+    imagem: "/images/studio/design-sobrancelhas.webp",
   },
   {
     id: "design-com-henna",
@@ -132,7 +131,7 @@ export const SERVICOS_SOBRANCELHAS: ServicoSobrancelha[] = [
     slogan: "Realce & preenchimento",
     descricao: "Design alinhado com aplicação de henna para cobrir falhas e definir o traço.",
     preco: 55,
-    imagem: "/images/studio/design-henna-limpo.jpg",
+    imagem: "/images/studio/design-henna-limpo.webp",
   },
   {
     id: "protocolo-recuperacao",
@@ -140,7 +139,8 @@ export const SERVICOS_SOBRANCELHAS: ServicoSobrancelha[] = [
     slogan: "Nutrição dos fios",
     descricao: "Tratamento fortalecedor para estimular o crescimento e recuperar falhas.",
     preco: 95,
-    imagem: "/images/studio/protocolo-recuperacao-limpo.jpg",
+    imagem: "/images/studio/protocolo-recuperacao-limpo.webp",
+    observacao: "Comparativo real: acima antes do tratamento • abaixo após recuperação.",
   },
 ];
 

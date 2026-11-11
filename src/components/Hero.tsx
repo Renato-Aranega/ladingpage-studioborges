@@ -58,8 +58,10 @@ export const Hero: React.FC = () => {
           >
             <div className="imagem-cortina aspect-[4/3] sm:aspect-[4/5] bg-[#F1EAF8] border border-[var(--borda-suave)]">
               <img
-                src="/images/studio/amanda-atendimento.jpg"
+                src="/images/studio/amanda-atendimento.webp"
                 alt="Amanda Borges apresentando fios de extensão no Studio Borges"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-cover object-top"
               />
             </div>

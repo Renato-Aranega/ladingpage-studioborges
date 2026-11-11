@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SERVICOS_SOBRANCELHAS, ServicoSobrancelha } from '../data/catalog';
+import { SERVICOS_SOBRANCELHAS, obterLinkWhatsApp, ServicoSobrancelha } from '../data/catalog';
 import { ModalFoto } from './ModalFoto';
 import { usarRevelacaoScroll } from '../hooks/useRevelacaoScroll';
 
@@ -55,6 +55,7 @@ export const BrowServices: React.FC = () => {
                       alt={servico.nome}
                       className="w-full h-full object-cover object-center"
                       loading="lazy"
+                      decoding="async"
                     />
                   </button>
                 </div>
@@ -82,6 +83,21 @@ export const BrowServices: React.FC = () => {
             );
           })}
         </div>
+
+        {/* Link discreto de agendamento ao final */}
+        <div className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-[var(--borda-suave)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <p className="hidden sm:block text-sm text-[#5E4D70]">
+            Agende isoladamente ou combine com cílios no mesmo horário.
+          </p>
+          <a
+            href={obterLinkWhatsApp('Agendar Sobrancelhas / Combo')}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs uppercase tracking-[0.14em] text-[#6F4B9E] hover:text-[#261835] font-semibold border-b border-[#C49B4B] pb-1 w-fit transition-colors"
+          >
+            Agendar Sobrancelhas ou Combo →
+          </a>
+        </div>
       </div>
 
       {fotoModal && (
@@ -92,6 +108,7 @@ export const BrowServices: React.FC = () => {
           titulo={fotoModal.nome}
           descricao={fotoModal.descricao}
           preco={fotoModal.preco}
+          observacao={fotoModal.observacao}
         />
       )}
     </section>

@@ -21,10 +21,11 @@ export const About: React.FC = () => {
           <div className="hidden lg:block lg:col-span-5 revelar-scroll">
             <div className="imagem-cortina aspect-[4/5] bg-[#F1EAF8] border border-[var(--borda-suave)]">
               <img
-                src="/images/studio/volume-hibrido.jpg"
+                src="/images/studio/volume-hibrido.webp"
                 alt="Detalhe de extensão de cílios no Studio Borges"
                 className="w-full h-full object-cover object-center"
                 loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

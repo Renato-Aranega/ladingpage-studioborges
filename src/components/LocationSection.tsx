@@ -3,7 +3,7 @@ import { DADOS_STUDIO } from '../data/catalog';
 import { usarRevelacaoScroll } from '../hooks/useRevelacaoScroll';
 
 /**
- * Seção de Localização em Osasco com Mapa Claro Natural
+ * Seção de Localização em Osasco com Perfil Oficial no Google
  */
 export const LocationSection: React.FC = () => {
   const referenciaSecao = usarRevelacaoScroll();
@@ -38,7 +38,7 @@ export const LocationSection: React.FC = () => {
                 <p>{DADOS_STUDIO.horarioFuncionamento}</p>
               </div>
 
-              <div className="pt-3 border-t border-[var(--borda-suave)] flex items-center gap-6 text-xs font-medium text-[#6F4B9E]">
+              <div className="pt-3 border-t border-[var(--borda-suave)] flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-medium text-[#6F4B9E]">
                 <a
                   href={DADOS_STUDIO.urlInstagram}
                   target="_blank"
@@ -46,6 +46,14 @@ export const LocationSection: React.FC = () => {
                   className="hover:text-[#261835] transition-colors"
                 >
                   {DADOS_STUDIO.instagram}
+                </a>
+                <a
+                  href={DADOS_STUDIO.urlMapaBusca}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#261835] transition-colors"
+                >
+                  Avaliações no Google
                 </a>
                 <span className="numeral-tabular text-[#5E4D70]">{DADOS_STUDIO.telefone}</span>
               </div>
