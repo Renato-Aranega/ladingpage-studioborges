@@ -7,12 +7,15 @@ import { MaintenanceTable } from './components/MaintenanceTable';
 import { About } from './components/About';
 import { LocationSection } from './components/LocationSection';
 import { Footer } from './components/Footer';
+import { usarScrollSuave } from './hooks/useScrollSuave';
 
 /**
  * Estrutura Principal da Landing Page — Studio Borges
  * Layout enxuto, claro, leve em tons roxo claro (lavanda) e dourado.
  */
 export const App: React.FC = () => {
+  usarScrollSuave();
+
   return (
     <div className="min-h-screen bg-[#FAF8FC] text-[#261835] relative">
       <Navbar />
