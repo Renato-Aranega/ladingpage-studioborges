@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://ladingpage-studioborges.vercel.app/sitemap.xml
