@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProvedorTema } from './context/ThemeContext';
+import { ProvedorTema, usarTema } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { PaymentBanner } from './components/PaymentBanner';
@@ -15,55 +15,62 @@ import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
 /**
- * Componente Raiz da Aplicação
- * Envolvido pelo ProvedorTema para suporte a Modo Claro e Modo Escuro
+ * Estrutura Principal da Landing Page
  */
+const ConteudoLandingPage: React.FC = () => {
+  const { tema } = usarTema();
+
+  return (
+    <div className={`min-h-screen fundo-principal texto-principal relative transition-colors duration-300 ${tema === 'claro' ? 'tema-claro' : 'tema-escuro'}`}>
+      {/* Barra de Navegação Superior */}
+      <Navbar />
+
+      {/* Conteúdo Principal com link de acessibilidade (skip link) */}
+      <main id="main">
+        {/* Seção Principal de Entrada */}
+        <Hero />
+
+        {/* Faixa com Desconto Pix e Formas de Pagamento */}
+        <PaymentBanner />
+
+        {/* Catálogo Oficial de Procedimentos de Cílios */}
+        <LashCatalog />
+
+        {/* Serviços de Harmonização de Sobrancelhas */}
+        <BrowServices />
+
+        {/* Tabela Interativa e Simulador de Manutenções */}
+        <MaintenanceTable />
+
+        {/* História, Conforto e Biossegurança da Amanda Borges */}
+        <About />
+
+        {/* Seção de Depoimentos e Avaliações de Clientes Reais */}
+        <Feedbacks />
+
+        {/* Políticas, Regras de Atendimento e Cuidados */}
+        <Policies />
+
+        {/* Endereço, Facilidade de Estacionamento e Mapa */}
+        <LocationSection />
+
+        {/* Perguntas e Respostas Frequentes */}
+        <Faq />
+      </main>
+
+      {/* Rodapé Institucional */}
+      <Footer />
+
+      {/* Botões de Ação para WhatsApp */}
+      <FloatingWhatsApp />
+    </div>
+  );
+};
+
 export const App: React.FC = () => {
   return (
     <ProvedorTema>
-      <div className="min-h-screen relative transition-colors duration-300">
-        {/* Barra de Navegação Superior */}
-        <Navbar />
-
-        {/* Conteúdo Principal com link de acessibilidade (skip link) */}
-        <main id="main">
-          {/* Seção Principal de Entrada */}
-          <Hero />
-
-          {/* Faixa com Desconto Pix e Formas de Pagamento */}
-          <PaymentBanner />
-
-          {/* Catálogo Oficial de Procedimentos de Cílios com fotos corrigidas */}
-          <LashCatalog />
-
-          {/* Serviços de Harmonização de Sobrancelhas */}
-          <BrowServices />
-
-          {/* Tabela Interativa e Simulador de Manutenções */}
-          <MaintenanceTable />
-
-          {/* História, Conforto e Biossegurança da Amanda Borges */}
-          <About />
-
-          {/* Seção de Depoimentos e Avaliações de Clientes Reais */}
-          <Feedbacks />
-
-          {/* Políticas, Regras de Atendimento e Cuidados */}
-          <Policies />
-
-          {/* Endereço, Facilidade de Estacionamento e Mapa */}
-          <LocationSection />
-
-          {/* Perguntas e Respostas Frequentes */}
-          <Faq />
-        </main>
-
-        {/* Rodapé Institucional */}
-        <Footer />
-
-        {/* Botão Flutuante e Barra Fixa para Celular */}
-        <FloatingWhatsApp />
-      </div>
+      <ConteudoLandingPage />
     </ProvedorTema>
   );
 };

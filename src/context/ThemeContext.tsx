@@ -25,12 +25,24 @@ export const ProvedorTema: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     localStorage.setItem('tema-studio-borges', tema);
     const raiz = document.documentElement;
+    const corpo = document.body;
+
     if (tema === 'claro') {
       raiz.classList.add('tema-claro');
       raiz.classList.remove('tema-escuro');
+      corpo?.classList.add('tema-claro');
+      corpo?.classList.remove('tema-escuro');
     } else {
       raiz.classList.add('tema-escuro');
       raiz.classList.remove('tema-claro');
+      corpo?.classList.add('tema-escuro');
+      corpo?.classList.remove('tema-claro');
+    }
+
+    // Atualiza a cor de tema da barra do navegador (especialmente útil em celulares)
+    const metaTema = document.querySelector('meta[name="theme-color"]');
+    if (metaTema) {
+      metaTema.setAttribute('content', tema === 'claro' ? '#FAF7F2' : '#0F0814');
     }
   }, [tema]);
 
@@ -46,3 +58,4 @@ export const ProvedorTema: React.FC<{ children: React.ReactNode }> = ({ children
 };
 
 export const usarTema = () => useContext(ContextoTema);
+

@@ -34,11 +34,11 @@ export const FloatingWhatsApp: React.FC = () => {
       </div>
 
       {/* Barra Fixa Inferior para Celular (Mobile-First de Alta Conversão) */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#180E21]/95 backdrop-blur-lg border-t border-[#DFB15B]/35 px-4 py-3 shadow-[0_-5px_25px_rgba(0,0,0,0.5)]">
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 fundo-superficie-translucido backdrop-blur-lg border-t borda-destaque px-4 py-3 shadow-[0_-5px_25px_rgba(0,0,0,0.25)] transition-colors">
         <div className="flex items-center gap-2.5 max-w-md mx-auto">
           <a
             href="#cilios"
-            className="flex-1 flex items-center justify-center gap-1.5 py-3 px-2 rounded-xl bg-[#231530] text-[#FDFCFA] text-xs font-semibold border border-[#2E1B3D] active:scale-95 transition-transform"
+            className="flex-1 flex items-center justify-center gap-1.5 py-3 px-2 rounded-xl fundo-card texto-principal text-xs font-semibold border borda-suave active:scale-95 transition-transform"
           >
             <Calendar className="w-4 h-4 text-[#DFB15B]" />
             <span>Serviços</span>

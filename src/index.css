@@ -4,50 +4,61 @@
   --color-primary-gold: #DFB15B;
   --color-primary-gold-champagne: #F5E6C4;
   --color-primary-gold-dark: #997D2B;
-  --color-purple-deep: #0F0814;
-  --color-purple-surface: #180E21;
-  --color-purple-elevated: #231530;
-  --color-purple-card: #1E1229;
-  --color-purple-accent: #A855F7;
-  --color-purple-royal: #7E22CE;
-  --color-text-secondary: #D4C8DE;
-  --color-text-muted: #8E7F9B;
   --color-whatsapp: #25D366;
 
   --font-serif: "Playfair Display", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 }
 
-:root {
-  --bg-principal: #0F0814;
-  --bg-superficie: #180E21;
-  --bg-card: #1E1229;
-  --bg-elevado: #231530;
-  --texto-principal: #FDFCFA;
-  --texto-secundario: #D4C8DE;
-  --texto-mutado: #8E7F9B;
-  --borda-suave: rgba(223, 177, 91, 0.22);
-  --borda-card: rgba(223, 177, 91, 0.28);
-  --sombra-card: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+/* Modo Escuro (Padrão: Roxo Imperial & Dourado) */
+:root,
+.tema-escuro,
+html.tema-escuro,
+body.tema-escuro {
+  --cor-fundo: #0F0814;
+  --cor-fundo-secundario: #140A1B;
+  --cor-superficie: #180E21;
+  --cor-superficie-translucido: rgba(24, 14, 33, 0.92);
+  --cor-card: #1E1229;
+  --cor-card-translucido: rgba(30, 18, 41, 0.88);
+  --cor-card-elevado: #241532;
+  --cor-texto-principal: #FDFCFA;
+  --cor-texto-secundario: #D4C8DE;
+  --cor-texto-mutado: #8E7F9B;
+  --cor-borda-suave: rgba(223, 177, 91, 0.22);
+  --cor-borda-destaque: rgba(223, 177, 91, 0.45);
+  --cor-dourado: #DFB15B;
+  --cor-sombra: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+  --cor-nav-blur: rgba(15, 8, 20, 0.92);
+  --cor-gradiente-foto: linear-gradient(to top, rgba(24, 14, 33, 0.95) 0%, rgba(24, 14, 33, 0.4) 60%, transparent 100%);
 }
 
-.tema-claro {
-  --bg-principal: #FAF7F2;
-  --bg-superficie: #FFFFFF;
-  --bg-card: #FAF6EE;
-  --bg-elevado: #F2E9DA;
-  --texto-principal: #180E21;
-  --texto-secundario: #4B3A5A;
-  --texto-mutado: #7B688A;
-  --borda-suave: rgba(184, 134, 11, 0.22);
-  --borda-card: rgba(184, 134, 11, 0.28);
-  --sombra-card: 0 10px 25px -5px rgba(184, 134, 11, 0.08);
+/* Modo Claro (Linho Pérola, Off-White & Dourado Nobre) */
+.tema-claro,
+html.tema-claro,
+body.tema-claro {
+  --cor-fundo: #FAF7F2;
+  --cor-fundo-secundario: #F2EBE0;
+  --cor-superficie: #FFFFFF;
+  --cor-superficie-translucido: rgba(255, 255, 255, 0.92);
+  --cor-card: #FFFFFF;
+  --cor-card-translucido: rgba(255, 255, 255, 0.88);
+  --cor-card-elevado: #F7F1E6;
+  --cor-texto-principal: #1A0E24;
+  --cor-texto-secundario: #4B385D;
+  --cor-texto-mutado: #78638B;
+  --cor-borda-suave: rgba(184, 134, 11, 0.22);
+  --cor-borda-destaque: rgba(184, 134, 11, 0.5);
+  --cor-dourado: #B8860B;
+  --cor-sombra: 0 10px 25px -5px rgba(184, 134, 11, 0.12);
+  --cor-nav-blur: rgba(250, 247, 242, 0.92);
+  --cor-gradiente-foto: linear-gradient(to top, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.4) 60%, transparent 100%);
 }
 
 @layer base {
   body {
-    background-color: var(--bg-principal);
-    color: var(--texto-principal);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
     font-family: "Plus Jakarta Sans", sans-serif;
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -58,7 +69,83 @@
   }
 }
 
-/* Regal Purple & Gold Utilities */
+/* Classes utilitárias dinâmicas para o Tema */
+.fundo-principal {
+  background-color: var(--cor-fundo) !important;
+  color: var(--cor-texto-principal);
+}
+
+.fundo-secundario {
+  background-color: var(--cor-fundo-secundario) !important;
+  color: var(--cor-texto-principal);
+}
+
+.fundo-superficie {
+  background-color: var(--cor-superficie) !important;
+  color: var(--cor-texto-principal);
+}
+
+.fundo-superficie-translucido {
+  background-color: var(--cor-superficie-translucido) !important;
+  color: var(--cor-texto-principal);
+}
+
+.fundo-card {
+  background-color: var(--cor-card) !important;
+  color: var(--cor-texto-principal);
+}
+
+.fundo-card-translucido {
+  background-color: var(--cor-card-translucido) !important;
+  color: var(--cor-texto-principal);
+}
+
+.fundo-elevado {
+  background-color: var(--cor-card-elevado) !important;
+  color: var(--cor-texto-principal);
+}
+
+.hover\:fundo-elevado:hover {
+  background-color: var(--cor-card-elevado) !important;
+}
+
+.hover\:fundo-card:hover {
+  background-color: var(--cor-card) !important;
+}
+
+.hover\:fundo-superficie:hover {
+  background-color: var(--cor-superficie) !important;
+}
+
+.hover\:borda-destaque:hover {
+  border-color: var(--cor-borda-destaque) !important;
+}
+
+.texto-principal {
+  color: var(--cor-texto-principal) !important;
+}
+
+.texto-secundario {
+  color: var(--cor-texto-secundario) !important;
+}
+
+.texto-mutado {
+  color: var(--cor-texto-mutado) !important;
+}
+
+.borda-suave {
+  border-color: var(--cor-borda-suave) !important;
+}
+
+.borda-destaque {
+  border-color: var(--cor-borda-destaque) !important;
+}
+
+.gradiente-foto {
+  background: var(--cor-gradiente-foto) !important;
+}
+
+/* Gradientes Dourados Elegantes */
 .text-gold-gradient {
   background: linear-gradient(135deg, #FFF1D0 0%, #DFB15B 50%, #B38E36 100%);
   -webkit-background-clip: text;
@@ -75,34 +162,16 @@
   background: linear-gradient(135deg, #DFB15B 0%, #C89D42 50%, #997D2B 100%);
 }
 
-.bg-gold-gradient-glow {
-  background: linear-gradient(135deg, #F5E6C4 0%, #DFB15B 50%, #B38E36 100%);
-  box-shadow: 0 0 25px rgba(223, 177, 91, 0.45);
-}
-
-.bg-purple-gold-gradient {
-  background: linear-gradient(135deg, #7E22CE 0%, #9333EA 40%, #DFB15B 100%);
-}
-
-.border-gold-subtle {
-  border-color: var(--borda-suave);
-}
-
 .glass-card {
-  background: var(--bg-card);
-  border: 1px solid var(--borda-card);
-  box-shadow: var(--sombra-card);
+  background: var(--cor-card);
+  border: 1px solid var(--cor-borda-suave);
+  box-shadow: var(--cor-sombra);
   transition: all 0.3s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(223, 177, 91, 0.55);
-  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(168, 85, 247, 0.25);
-}
-
-.tema-claro .glass-card:hover {
-  border-color: rgba(184, 134, 11, 0.6);
-  box-shadow: 0 15px 35px -10px rgba(184, 134, 11, 0.15);
+  border-color: var(--cor-borda-destaque);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4), 0 0 20px -5px rgba(223, 177, 91, 0.2);
 }
 
 /* Animação suave para botão magnético */
@@ -121,12 +190,12 @@
   animation: pulsar-dourado 3.5s infinite ease-in-out;
 }
 
-/* Custom Scrollbar */
+/* Barra de rolagem personalizada */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-principal);
+  background: var(--cor-fundo);
 }
 ::-webkit-scrollbar-thumb {
   background: #2E1B3D;
@@ -136,5 +205,5 @@
   background: #D8CEBE;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #DFB15B;
+  background: var(--cor-dourado);
 }

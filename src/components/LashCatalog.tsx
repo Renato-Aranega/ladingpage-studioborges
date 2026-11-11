@@ -5,17 +5,16 @@ import { ModalFoto } from './ModalFoto';
 
 /**
  * Catálogo Interativo de Extensões de Cílios
- * Apresenta fotos reais em enquadramento vertical ideal (aspect ratio 4:5),
- * seleção intuitiva do procedimento e botão de agendamento magnético unificado.
+ * Fotos reais em proporção vertical 4:5, seleção visual e CTA mestre dinâmico.
  */
 export const LashCatalog: React.FC = () => {
   // Filtro de categoria selecionado
   const [filtroAtivo, definirFiltroAtivo] = useState<'todos' | 'naturais' | 'volume' | 'tendencia'>('todos');
   
-  // Procedimento atualmente selecionado pela cliente (padrão: Volume Brasileiro)
+  // Procedimento atualmente selecionado pela cliente
   const [servicoSelecionado, definirServicoSelecionado] = useState<ServicoCilios>(SERVICOS_CILIOS[0]);
 
-  // Estado para controlar a visualização de foto em alta definição no modal
+  // Modal de foto ampliada
   const [fotoModal, definirFotoModal] = useState<ServicoCilios | null>(null);
 
   // Filtragem dos serviços conforme botão selecionado
@@ -30,64 +29,60 @@ export const LashCatalog: React.FC = () => {
   const precoPixSelecionado = servicoSelecionado.preco * 0.95;
 
   return (
-    <section id="cilios" className="py-20 sm:py-24 relative border-t border-[#DFB15B]/15">
-      {/* Luzes difusas de ambientação */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#7E22CE]/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-96 h-96 bg-[#DFB15B]/10 rounded-full blur-[140px] pointer-events-none" />
-
+    <section id="cilios" className="py-20 sm:py-24 relative border-t borda-suave fundo-principal transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Cabeçalho da Seção */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1E1229] border border-[#DFB15B]/40 text-xs font-semibold text-[#DFB15B] shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full fundo-card border borda-destaque text-xs font-semibold text-[#DFB15B] shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             <span>CATÁLOGO BEAUTY</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold tracking-tight texto-principal">
             Extensões de Cílios com Acabamento <span className="text-gold-gradient italic">Impecável</span>
           </h2>
-          <p className="text-sm sm:text-base text-[#D4C8DE] font-light">
+          <p className="text-sm sm:text-base texto-secundario font-light">
             Toque no procedimento desejado para selecioná-lo ou na foto para ampliar os detalhes dos fios.
           </p>
 
-          {/* Botões de Filtro por Estilo de Cílios (Otimizados para toque no celular) */}
+          {/* Botões de Filtro */}
           <div className="flex items-center justify-start sm:justify-center gap-2 pt-4 overflow-x-auto pb-2 scrollbar-none">
             <button
               onClick={() => definirFiltroAtivo('todos')}
-              className={`px-4 py-2.5 rounded-full text-xs font-medium whitespace-nowrap transition-all shrink-0 ${
+              className={`px-4 py-2.5 rounded-full text-xs font-medium whitespace-nowrap transition-all shrink-0 cursor-pointer ${
                 filtroAtivo === 'todos'
                   ? 'bg-gold-gradient text-[#0F0814] font-bold shadow-md'
-                  : 'bg-[#180E21] text-[#D4C8DE] hover:text-[#FDFCFA] border border-[#2E1B3D]'
+                  : 'fundo-superficie texto-secundario hover:texto-principal border borda-suave'
               }`}
             >
               Todos os Volumes ({SERVICOS_CILIOS.length})
             </button>
             <button
               onClick={() => definirFiltroAtivo('naturais')}
-              className={`px-4 py-2.5 rounded-full text-xs font-medium whitespace-nowrap transition-all shrink-0 ${
+              className={`px-4 py-2.5 rounded-full text-xs font-medium whitespace-nowrap transition-all shrink-0 cursor-pointer ${
                 filtroAtivo === 'naturais'
                   ? 'bg-gold-gradient text-[#0F0814] font-bold shadow-md'
-                  : 'bg-[#180E21] text-[#D4C8DE] hover:text-[#FDFCFA] border border-[#2E1B3D]'
+                  : 'fundo-superficie texto-secundario hover:texto-principal border borda-suave'
               }`}
             >
               Naturais & Elegantes
             </button>
             <button
               onClick={() => definirFiltroAtivo('volume')}
-              className={`px-4 py-2.5 rounded-full text-xs font-medium whitespace-nowrap transition-all shrink-0 ${
+              className={`px-4 py-2.5 rounded-full text-xs font-medium whitespace-nowrap transition-all shrink-0 cursor-pointer ${
                 filtroAtivo === 'volume'
                   ? 'bg-gold-gradient text-[#0F0814] font-bold shadow-md'
-                  : 'bg-[#180E21] text-[#D4C8DE] hover:text-[#FDFCFA] border border-[#2E1B3D]'
+                  : 'fundo-superficie texto-secundario hover:texto-principal border borda-suave'
               }`}
             >
               Densidade & Volume
             </button>
             <button
               onClick={() => definirFiltroAtivo('tendencia')}
-              className={`px-4 py-2.5 rounded-full text-xs font-medium whitespace-nowrap transition-all shrink-0 ${
+              className={`px-4 py-2.5 rounded-full text-xs font-medium whitespace-nowrap transition-all shrink-0 cursor-pointer ${
                 filtroAtivo === 'tendencia'
                   ? 'bg-gold-gradient text-[#0F0814] font-bold shadow-md'
-                  : 'bg-[#180E21] text-[#D4C8DE] hover:text-[#FDFCFA] border border-[#2E1B3D]'
+                  : 'fundo-superficie texto-secundario hover:texto-principal border borda-suave'
               }`}
             >
               Efeito Lifting & Power
@@ -95,7 +90,7 @@ export const LashCatalog: React.FC = () => {
           </div>
         </div>
 
-        {/* Grade de Cartões de Cílios com Proporção Vertical Adequada (aspect-4/5) */}
+        {/* Grade de Cartões de Cílios com Proporção Vertical Adequada (4:5) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {servicosFiltrados.map((servico) => {
             const estaSelecionado = servicoSelecionado.id === servico.id;
@@ -107,7 +102,7 @@ export const LashCatalog: React.FC = () => {
                 onClick={() => definirServicoSelecionado(servico)}
                 className={`glass-card rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 cursor-pointer group relative ${
                   estaSelecionado
-                    ? 'ring-2 ring-[#DFB15B] shadow-[0_0_30px_rgba(223,177,91,0.35)] -translate-y-1'
+                    ? 'ring-2 ring-[#DFB15B] shadow-[0_0_25px_rgba(223,177,91,0.3)] -translate-y-1'
                     : 'hover:-translate-y-1'
                 }`}
               >
@@ -120,14 +115,14 @@ export const LashCatalog: React.FC = () => {
                 )}
 
                 {/* Imagem do Procedimento em Proporção Vertical Perfeita (4:5) */}
-                <div className="relative aspect-[4/5] overflow-hidden bg-[#180E21]">
+                <div className="relative aspect-[4/5] overflow-hidden fundo-superficie">
                   <img
                     src={servico.imagem}
                     alt={servico.nome}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#180E21] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 gradiente-foto" />
 
                   {/* Tag de destaque */}
                   {servico.destaque && (
@@ -143,7 +138,7 @@ export const LashCatalog: React.FC = () => {
                       e.stopPropagation();
                       definirFotoModal(servico);
                     }}
-                    className="absolute bottom-3 right-3 p-2 rounded-xl bg-[#0F0814]/80 hover:bg-[#0F0814] border border-[#DFB15B]/30 text-[#DFB15B] backdrop-blur-md shadow-md transition-all hover:scale-110"
+                    className="absolute bottom-3 right-3 p-2 rounded-xl fundo-superficie border borda-destaque text-[#DFB15B] shadow-md transition-all hover:scale-110 cursor-pointer"
                     aria-label={`Ver foto ampliada de ${servico.nome}`}
                   >
                     <ZoomIn className="w-4 h-4" />
@@ -151,7 +146,7 @@ export const LashCatalog: React.FC = () => {
 
                   {/* Preço em Destaque sobre a Imagem */}
                   <div className="absolute bottom-3 left-4">
-                    <span className="text-2xl font-serif font-bold text-[#FDFCFA]">
+                    <span className="text-2xl font-serif font-bold texto-principal">
                       R$ {servico.preco.toFixed(2).replace('.', ',')}
                     </span>
                     <span className="block text-[11px] text-[#DFB15B] font-semibold">
@@ -163,21 +158,21 @@ export const LashCatalog: React.FC = () => {
                 {/* Conteúdo do Card */}
                 <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-3">
                   <div className="space-y-1.5">
-                    <h3 className="text-xl font-serif font-bold text-[#FDFCFA] group-hover:text-[#DFB15B] transition-colors">
+                    <h3 className="text-xl font-serif font-bold texto-principal group-hover:text-[#DFB15B] transition-colors">
                       {servico.nome}
                     </h3>
                     <p className="text-xs font-semibold text-[#DFB15B] uppercase tracking-wider">
                       {servico.slogan}
                     </p>
-                    <p className="text-xs sm:text-sm text-[#D4C8DE] leading-relaxed font-light">
+                    <p className="text-xs sm:text-sm texto-secundario leading-relaxed font-light">
                       {servico.descricao}
                     </p>
                   </div>
 
                   {/* Lista de Diferenciais */}
-                  <div className="space-y-1.5 pt-2 border-t border-[#2E1B3D]">
+                  <div className="space-y-1.5 pt-2 border-t borda-suave">
                     {servico.diferenciais.map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs text-[#D4C8DE]">
+                      <div key={idx} className="flex items-center gap-2 text-xs texto-secundario">
                         <Check className="w-3.5 h-3.5 text-[#DFB15B] shrink-0" />
                         <span>{item}</span>
                       </div>
@@ -186,7 +181,7 @@ export const LashCatalog: React.FC = () => {
 
                   {/* Indicador de Ação Rápida */}
                   <div className="pt-2">
-                    <span className="text-[11px] text-[#8E7F9B] group-hover:text-[#DFB15B] transition-colors font-medium flex items-center justify-between">
+                    <span className="text-[11px] texto-mutado group-hover:text-[#DFB15B] transition-colors font-medium flex items-center justify-between">
                       <span>{estaSelecionado ? '✓ Pronto para agendar abaixo' : 'Toque para selecionar'}</span>
                       <span className="text-xs">&rarr;</span>
                     </span>
@@ -197,21 +192,21 @@ export const LashCatalog: React.FC = () => {
           })}
         </div>
 
-        {/* CTA MESTRE E MAGNÉTICO (Elimina botões repetitivos e dá ultra-destaque) */}
+        {/* CTA MESTRE E MAGNÉTICO */}
         <div className="mt-14 max-w-2xl mx-auto text-center space-y-4">
-          <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#231530] to-[#180E21] border border-[#DFB15B]/40 shadow-2xl space-y-4">
+          <div className="p-6 sm:p-8 rounded-3xl fundo-secundario border borda-destaque shadow-2xl space-y-4">
             <span className="text-xs uppercase tracking-widest text-[#DFB15B] font-bold block">
               Procedimento em Foco
             </span>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <h3 className="text-2xl font-serif font-bold text-[#FDFCFA]">
+              <h3 className="text-2xl font-serif font-bold texto-principal">
                 {servicoSelecionado.nome}
               </h3>
               <span className="text-xl font-serif font-bold text-[#DFB15B]">
                 R$ {servicoSelecionado.preco.toFixed(2).replace('.', ',')}
               </span>
             </div>
-            <p className="text-xs text-[#D4C8DE] font-light max-w-md mx-auto">
+            <p className="text-xs texto-secundario font-light max-w-md mx-auto">
               Pagamento via Pix ou espécie: apenas <strong className="text-[#DFB15B]">R$ {precoPixSelecionado.toFixed(2).replace('.', ',')}</strong> com o benefício de 5% de desconto.
             </p>
 
@@ -227,7 +222,7 @@ export const LashCatalog: React.FC = () => {
             </a>
           </div>
 
-          <p className="text-xs text-[#8E7F9B]">
+          <p className="text-xs texto-mutado">
             Dúvida na escolha? Amanda realiza uma avaliação facial gratuita no início do seu atendimento.
           </p>
         </div>

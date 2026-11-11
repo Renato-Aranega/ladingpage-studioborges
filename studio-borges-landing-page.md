@@ -5,37 +5,42 @@ Desenvolvimento de uma Landing Page de altíssimo padrão para o **Studio Borges
 
 ## 2. Metas & KPIs
 - Design alinhado a estúdios de beleza de alto luxo (Paleta Royal Velvet Purple & Champagne Gold: Ameixa Nobre `#0F0814`, Veludo `#180E21` e Dourado Metálico `#DFB15B`).
+- Modo Claro e Escuro dinâmicos com alternador acessível.
 - 100% responsivo (Mobile-First otimizado para o perfil do Instagram `@lashamandaborges`).
-- Catálogo interativo de procedimentos com fotos reais extraídas do catálogo.
+- Catálogo interativo de procedimentos com fotos reais em aspect ratio vertical (4:5) e modal de zoom em alta resolução.
 - Tabela interativa de manutenções com filtro por periodicidade e calculadora em tempo real.
-- Seção de políticas e orientações claras de pré e pós atendimento.
+- Redução de ruído visual: cards selecionáveis com CTA magnético e pulsante.
+- Aba de feedbacks e avaliações de clientes reais (nota 5.0).
+- ScrollSpy no Header indicando a seção ativa da página.
 - Botões de conversão integrados ao WhatsApp com mensagens pré-formatadas para cada procedimento.
-- SEO local para Osasco e região.
+- Favicon e identidade visual lapidados.
 
 ## 3. Fases de Execução
 - [x] **Fase 0: Análise e Extração de Ativos**
   - [x] Inspeção do PDF de catálogo (10 páginas)
-  - [x] Extração e catalogação das 16 imagens de alta resolução
+  - [x] Extração e catalogação das imagens de alta resolução
   - [x] Definição de tokens no `DESIGN.md`
 - [x] **Fase 1: Setup do Projeto e Dependências**
   - [x] Inicialização de projeto React 19 + Vite 8 + Tailwind CSS v4 + Lucide Icons
   - [x] Configuração de fontes (`Playfair Display` e `Plus Jakarta Sans`)
-  - [x] Configuração de tema Tailwind com as cores do `DESIGN.md`
+  - [x] Configuração de tema Tailwind com suporte a Dark e Light Mode
 - [x] **Fase 2: Componentes Estruturais e de Conteúdo**
-  - [x] `Navbar` (logo, links de navegação rápida e CTA de contato)
-  - [x] `Hero` (headline marcante, autoridade, foto e CTA principal)
-  - [x] `PaymentBanner` (destaque para 5% OFF no Pix ou dinheiro)
-  - [x] `LashCatalog` (catálogo dos 6 volumes com foto real, preço e agendamento)
-  - [x] `BrowServices` (design, henna e protocolo de recuperação)
-  - [x] `MaintenanceTable` (tabela/calculadora interativa de manutenções)
-  - [x] `About` (Amanda Borges, experiência, espaço acolhedor e biossegurança)
-  - [x] `Policies` (regras de atendimento, tolerância, sinal de agendamento e garantia)
-  - [x] `LocationSection` (endereço em Osasco, mapa, facilidade de estacionar)
-  - [x] `Faq` (dúvidas frequentes de clientes)
-  - [x] `Footer` (rodapé elegante com créditos e redes)
-  - [x] `FloatingWhatsApp` (botão flutuante com pulso + barra de conversão mobile fixa)
-- [x] **Fase 3: Testes, Otimização e Validação**
-  - [x] Verificação de responsividade mobile
-  - [x] Verificação de links do WhatsApp com mensagens dinâmicas
-  - [x] Build de produção sem erros de TypeScript ou CSS (Vite build em 311ms)
-  - [x] Servidor de desenvolvimento ativo em `http://localhost:3000`
+  - [x] `Navbar` com ScrollSpy, logo nítido e alternador de Tema (Sol/Lua)
+  - [x] `Hero` de alto impacto com foto da fundadora e badges
+  - [x] `PaymentBanner` com destaque para 5% OFF no Pix
+  - [x] `LashCatalog` com fotos em proporção 4:5, cards selecionáveis e CTA magnético
+  - [x] `BrowServices` com fotos corrigidas e combo facial
+  - [x] `ModalFoto` para visualização ampliada dos procedimentos em alta resolução
+  - [x] `MaintenanceTable` com calculadora interativa
+  - [x] `About` destacando biossegurança, conforto e produtos Anvisa
+  - [x] `Feedbacks` com avaliações 5 estrelas e depoimentos reais
+  - [x] `Policies` com orientações pré e pós atendimento
+  - [x] `LocationSection` com mapa e facilidade de estacionar
+  - [x] `Faq` respondendo às principais objeções
+  - [x] `Footer` com navegação e créditos
+  - [x] `FloatingWhatsApp` com barra fixa mobile otimizada
+- [x] **Fase 3: Testes, Git e Publicação**
+  - [x] Revisão e refinamento do `.gitignore`
+  - [x] Código, variáveis e comentários 100% em Português Brasileiro
+  - [x] Sincronização e push nas branches `main` e `desenvolve` no GitHub
+  - [x] Build de produção verificado com 0 erros (364ms)

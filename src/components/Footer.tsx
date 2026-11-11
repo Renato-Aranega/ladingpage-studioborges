@@ -14,15 +14,15 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#0A050D] border-t border-[#DFB15B]/20 pt-16 pb-24 md:pb-16 text-xs text-[#D4C8DE]">
+    <footer className="fundo-secundario border-t borda-suave pt-16 pb-24 md:pb-16 text-xs texto-secundario">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#2E1B3D]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b borda-suave">
           
           {/* Coluna 1: Marca e Redes (5 colunas) */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full border border-[#DFB15B]/40 overflow-hidden bg-[#180E21] p-0.5 flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 rounded-full border borda-destaque overflow-hidden fundo-superficie p-0.5 flex items-center justify-center shadow-lg">
                 <img
                   src="/images/studio/logo-badge.png"
                   alt="Logo Studio Borges"
@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
                 />
               </div>
               <div>
-                <span className="font-serif tracking-wider text-lg font-bold text-[#FDFCFA] block leading-none">
+                <span className="font-serif tracking-wider text-lg font-bold texto-principal block leading-none">
                   STUDIO BORGES
                 </span>
                 <span className="text-[10px] tracking-[0.25em] text-[#DFB15B] uppercase block mt-1 font-semibold">
@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
 
-            <p className="text-xs text-[#D4C8DE] max-w-sm leading-relaxed font-light">
+            <p className="text-xs texto-secundario max-w-sm leading-relaxed font-light">
               Especialista em realçar a beleza e a autoestima feminina através de técnicas personalizadas de extensão de cílios e design de sobrancelhas em Osasco, SP.
             </p>
 
@@ -49,7 +49,7 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram Studio Borges"
-                className="w-9 h-9 rounded-full bg-[#180E21] border border-[#DFB15B]/30 flex items-center justify-center text-[#DFB15B] hover:scale-110 hover:border-[#DFB15B] hover:shadow-[0_0_12px_rgba(223,177,91,0.3)] transition-all"
+                className="w-9 h-9 rounded-full fundo-superficie border borda-destaque flex items-center justify-center text-[#DFB15B] hover:scale-110 hover:shadow-[0_0_12px_rgba(223,177,91,0.3)] transition-all"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp Studio Borges"
-                className="w-9 h-9 rounded-full bg-[#180E21] border border-[#DFB15B]/30 flex items-center justify-center text-[#25D366] hover:scale-110 hover:border-[#25D366] hover:shadow-[0_0_12px_rgba(37,211,102,0.3)] transition-all"
+                className="w-9 h-9 rounded-full fundo-superficie border borda-suave flex items-center justify-center text-[#25D366] hover:scale-110 hover:shadow-[0_0_12px_rgba(37,211,102,0.3)] transition-all"
               >
                 <Phone className="w-4 h-4" />
               </a>
@@ -67,7 +67,7 @@ export const Footer: React.FC = () => {
 
           {/* Coluna 2: Navegação Rápida (3 colunas) */}
           <div className="md:col-span-3 space-y-3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-[#FDFCFA]">
+            <h4 className="text-xs font-semibold uppercase tracking-wider texto-principal">
               Navegação
             </h4>
             <ul className="space-y-2 font-light">
@@ -82,7 +82,7 @@ export const Footer: React.FC = () => {
 
           {/* Coluna 3: Horários e Contato (4 colunas) */}
           <div className="md:col-span-4 space-y-3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-[#FDFCFA]">
+            <h4 className="text-xs font-semibold uppercase tracking-wider texto-principal">
               Atendimento & Contato
             </h4>
             <div className="space-y-2 text-xs font-light">
@@ -94,7 +94,7 @@ export const Footer: React.FC = () => {
                 <Phone className="w-4 h-4 text-[#25D366] shrink-0" />
                 <span>WhatsApp: {DADOS_STUDIO.telefone}</span>
               </p>
-              <p className="text-[11px] text-[#8E7F9B] pt-2">
+              <p className="text-[11px] texto-mutado pt-2">
                 {DADOS_STUDIO.horarioFuncionamento}
               </p>
             </div>
@@ -103,15 +103,15 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Créditos Inferiores e Botão Voltar ao Topo */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#8E7F9B]">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] texto-mutado">
           <p>© {new Date().getFullYear()} Studio Borges - Amanda Borges. Todos os direitos reservados.</p>
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1 text-[#D4C8DE]">
+            <span className="flex items-center gap-1 texto-secundario">
               Feito com <Heart className="w-3 h-3 text-[#A855F7] fill-[#A855F7]" /> para realçar sua autoestima
             </span>
             <button
               onClick={rolarAoTopo}
-              className="p-2 rounded-lg bg-[#180E21] border border-[#2E1B3D] text-[#D4C8DE] hover:text-[#DFB15B] hover:border-[#DFB15B]/40 transition-colors"
+              className="p-2 rounded-lg fundo-superficie border borda-suave texto-secundario hover:text-[#DFB15B] hover:borda-destaque transition-colors cursor-pointer"
               aria-label="Voltar ao topo da página"
             >
               <ArrowUp className="w-4 h-4" />
