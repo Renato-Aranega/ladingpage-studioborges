@@ -1,104 +1,64 @@
 ---
-name: Studio Borges — Warm Editorial Atelier
-version: 3.0.0
+name: Studio Borges — Lavanda Clara & Dourado Suave
+version: 4.0.0
 colors:
-  bg-primary: "#0E0C0A"
-  bg-elevated: "#171411"
-  bg-light-section: "#F4EFEA"
-  text-main: "#F5F2EB"
-  text-dark: "#171411"
-  text-muted: "#9E9689"
-  text-muted-dark: "#5C5449"
-  accent-champagne: "#C5A880"
-  accent-champagne-dark: "#7A5E3A"
-  border-hairline: "rgba(197, 168, 128, 0.18)"
-  border-hairline-dark: "rgba(23, 20, 17, 0.15)"
+  bg-principal: "#FAF8FC"
+  bg-lilac-suave: "#F1EAF8"
+  bg-superficie: "#FFFFFF"
+  text-main: "#261835"
+  text-muted: "#5E4D70"
+  accent-lilac: "#9B76C9"
+  accent-lilac-text: "#6F4B9E"
+  accent-gold: "#C49B4B"
+  accent-gold-text: "#8A651D"
+  border-soft: "rgba(155, 118, 201, 0.2)"
+  border-gold: "rgba(196, 155, 75, 0.35)"
 typography:
   display-hero:
     fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "clamp(2.5rem, 4.5vw, 4.2rem)"
-    fontWeight: 400
-    lineHeight: 1.08
+    fontSize: "clamp(2.4rem, 4.2vw, 3.8rem)"
+    fontWeight: 500
+    lineHeight: 1.12
     letterSpacing: "-0.02em"
   heading-section:
     fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "clamp(2.25rem, 3.8vw, 3.5rem)"
-    fontWeight: 400
-    lineHeight: 1.1
-    letterSpacing: "-0.02em"
-  heading-item:
-    fontFamily: "Cormorant Garamond, Georgia, serif"
-    fontSize: "1.6rem"
-    fontWeight: 400
-    lineHeight: 1.2
-    letterSpacing: "-0.01em"
-  indexer:
-    fontFamily: "Plus Jakarta Sans, sans-serif"
-    fontSize: "0.75rem"
+    fontSize: "clamp(2rem, 3.2vw, 2.8rem)"
     fontWeight: 500
-    lineHeight: 1.4
-    letterSpacing: "0.2em"
+    lineHeight: 1.15
   body-default:
     fontFamily: "Plus Jakarta Sans, sans-serif"
     fontSize: "0.95rem"
     fontWeight: 400
-    lineHeight: 1.65
-    letterSpacing: "-0.01em"
+    lineHeight: 1.6
 rounded:
-  none: "0px"
-  sharp: "2px"
-  media: "4px"
+  sm: "6px"
+  md: "10px"
+  lg: "14px"
 spacing:
-  section-y: "112px"
-  gutter: "32px"
-  compact: "16px"
+  section-y: "88px"
+  gutter: "28px"
 components:
   button-primary:
-    backgroundColor: "{colors.accent-champagne}"
-    textColor: "{colors.bg-primary}"
-    rounded: "{rounded.sharp}"
-    padding: "16px 28px"
-  hairline-divider:
-    borderColor: "{colors.border-hairline}"
-    height: "1px"
+    backgroundColor: "{colors.accent-gold}"
+    textColor: "#FFFFFF"
+    rounded: "{rounded.sm}"
+    padding: "14px 26px"
 ---
 
-# Studio Borges — Warm Editorial Atelier Specification
+# Studio Borges — Lavanda Clara & Dourado Suave Specification
 
 ## Overview
-Sistema visual **Warm Editorial Atelier** desenvolvido para o **Studio Borges (Amanda Borges — Osasco/SP)**, inspirado em editoriais de beleza contemporâneos (Aesop, Chanel Beauty, Byredo e Glossier). A direção de arte abandona gradientes neon, sombras brilhantes, cartões repetitivos e tons roxos em favor de superfícies foscas terrosas, alternância intencional entre escuro profundo (`#0E0C0A`) e linho cru claro (`#F4EFEA`), fotografia macro limpa e tipografia serifada de alta costura.
+Visual leve, limpo, feminino e arejado em **Lavanda Clara & Dourado Suave**, alinhado diretamente às fotografias reais da Amanda Borges e ao catálogo do estúdio em Osasco, SP. O foco é eliminar poluição visual, excesso de texto, botões repetidos e avaliações fictícias, destacando procedimentos, valores e agendamento simples.
 
 ## Colors
-- **Obsidian Espresso (`#0E0C0A`)**: Canvas principal nas seções escuras (`Hero`, `Cílios`, `Manutenção`, `Políticas`, `Localização`, `Footer`).
-- **Warm Charcoal (`#171411`)**: Superfície sutil elevada para faixas informativas (`PaymentBanner`), hover de tabelas e seção de citações (`Feedbacks`), além da tinta principal nas seções claras.
-- **Alabaster / Linho Cru (`#F4EFEA`)**: Fundo das seções claras (`Catálogo de Sobrancelhas`, `Sobre Amanda`, `Perguntas Frequentes`), criando ritmo editorial e destacando tons naturais de pele.
-- **Off-White Quente (`#F5F2EB`)**: Texto principal nas seções escuras.
-- **Taupe Editorial (`#9E9689` / `#5C5449`)**: Textos secundários e metadados.
-- **Champagne Fosco (`#C5A880`)**: Acento exclusivo em superfícies escuras, substituindo dourados saturados. Em fundos claros (`#F4EFEA`), usa-se bronze champagne escurecido (`#7A5E3A`) para garantir legibilidade WCAG AA.
-- **Hairlines (`rgba(197, 168, 128, 0.18)` / `rgba(23, 20, 17, 0.15)`)**: Linhas secas divisórias de `1px`.
-
-## Typography
-- **Display & Títulos**: `Cormorant Garamond` (pesos 300 Light e 400 Regular + itálico editorial), alinhada à esquerda, escala fluida `clamp(2.5rem, 4.5vw, 4.2rem)`, `letter-spacing: -0.02em`, `line-height: 1.08`.
-- **Corpo & Interface**: `Plus Jakarta Sans` (pesos 300, 400, 500, 600), auto-hospedada via `@fontsource`, com `font-variant-numeric: tabular-nums` em preços e indexadores.
-- **Indexadores de Seção**: Caixa alta com tracking `0.2em`, formato `01 — SOBRE O ATELIÊ`, sem bordas de pílula e sem ícones.
-
-## Layout
-- Alternância rítmica entre escuro (`#0E0C0A` / `#171411`) e claro (`#F4EFEA`).
-- Grid máximo de `max-w-7xl`, generoso espaçamento vertical (`py-24 lg:py-32`), zero card-itis.
-- **Lookbook de Serviços**: Fotografias verticais `4:5` (`border-radius: 4px`), título e preço alinhados na mesma linha abaixo da foto, especificação seca e ação `AGENDAR PROCEDIMENTO ↗`.
-- **Split-Screen Sticky (40% / 60%)**: Políticas e Dúvidas Frequentes com coluna esquerda fixa durante a rolagem e acordeão de linhas horizontais com símbolo `+` rotacionando `45deg`.
-
-## Elevation & Depth
-- Sem sombras luminosas (`box-shadow` glow proibido). Profundidade criada por contraste tonal (`#0E0C0A` vs `#171411` vs `#F4EFEA`), linhas secas de `1px`, sobreposição assimétrica de 2 imagens e textura de grão editorial (`opacity: 0.025`).
-
-## Shapes
-- Cantos vivos arquitetônicos: `2px` em botões e controles, `4px` em frames fotográficos e mapa. Zero `rounded-full` em botões primários, tags de seção ou cartões.
-
-## Components
-- **Botão Primário**: Preenchimento sólido matte `#C5A880` com texto `#0E0C0A`, transição slide-fill horizontal para `#F5F2EB` e deslocamento diagonal de `3px` na seta `↗`.
-- **Animações**: Hook `IntersectionObserver` com curva cinematográfica `cubic-bezier(0.16, 1, 0.3, 1)` para revelação em cascata (`revelar-scroll`), desenho de linhas (`linha-desenho`) e escala de cortina nas imagens (`imagem-cortina`).
+- **Fundo Principal (`#FAF8FC`)**: Branco-lavanda claro e luminoso.
+- **Faixas Alternadas (`#F1EAF8`)**: Lilás pastel suave para ritmo visual calmo.
+- **Superfícies (`#FFFFFF`)**: Cartões limpos e discretos com borda suave em lilás/dourado.
+- **Lilás da Marca (`#9B76C9` / `#6F4B9E`)**: Acentos leves e identificadores de seção.
+- **Dourado Acetinado (`#C49B4B` / `#8A651D`)**: Botões principais, valores Pix e detalhes sutis, sem brilho neon.
+- **Tipografia Principal (`#261835`) e Secundária (`#5E4D70`)**: Ameixa escuro legível e suave.
 
 ## Do's and Don'ts
-- **Do**: Preservar todos os preços, regras de manutenção, políticas, endereço e cálculos do simulador originais.
-- **Do**: Aplicar filtro `grayscale(100%) invert(92%) contrast(85%)` no mapa do Google Maps e utilizar apenas fotos limpas e bem recortadas (sem datas impressas ou capturas de tela).
-- **Don't**: Usar tons roxos/violetas, emojis, ícones dentro de quadrados translúcidos, pill badges decorativas, títulos centralizados bicolores ou box-shadows brilhantes.
+- **Do**: Exibir apenas informações essenciais com bastante respiro entre elementos.
+- **Do**: Centralizar o foco em fotos limpas, nomes dos serviços e preços com transparência (incluindo 5% OFF no Pix).
+- **Don't**: Exibir depoimentos/feedbacks fictícios, textos longos repetitivos, emojis, ícones decorativos em caixas ou excesso de botões na mesma tela.

@@ -1,10 +1,10 @@
 import React from 'react';
-import { DADOS_STUDIO, obterLinkWhatsApp } from '../data/catalog';
+import { obterLinkWhatsApp } from '../data/catalog';
 import { usarRevelacaoScroll } from '../hooks/useRevelacaoScroll';
 
 /**
- * Seção Inicial (Hero) Editorial
- * Assimetria entre tipografia serifada de grande escala e fotografia macro limpa.
+ * Seção Inicial (Hero) Leve e Enxuta
+ * Foco direto na proposta de valor, foto da especialista e botão principal de agendamento.
  */
 export const Hero: React.FC = () => {
   const referenciaSecao = usarRevelacaoScroll();
@@ -13,103 +13,55 @@ export const Hero: React.FC = () => {
     <section
       id="inicio"
       ref={referenciaSecao}
-      className="relative min-h-[100dvh] bg-[#0E0C0A] text-[#F5F2EB] pt-28 md:pt-36 pb-20 lg:pb-28 flex flex-col justify-center"
+      className="bg-[#FAF8FC] pt-28 pb-16 lg:pt-36 lg:pb-24"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full">
-        {/* Linha de Metadados do Topo */}
-        <div className="flex flex-wrap items-center justify-between gap-2 pb-4 text-[11px] tracking-[0.2em] uppercase text-[#9E9689] revelar-scroll">
-          <span className="text-[#C5A880]">Ateliê de Cílios &amp; Sobrancelhas</span>
-          <span>Pestana, Osasco — SP</span>
-        </div>
-        <div className="h-px w-full bg-[var(--border-hairline)] mb-12 lg:mb-16 linha-desenho" />
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Texto Direto e Claro */}
+          <div className="lg:col-span-6 space-y-6 revelar-scroll">
+            <span className="text-xs uppercase tracking-[0.2em] text-[#6F4B9E] font-medium block">
+              Osasco, SP — Cílios &amp; Sobrancelhas
+            </span>
 
-        {/* Composição Editorial Assimétrica 7 / 5 */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Coluna Esquerda: Título Dramático e Especificações */}
-          <div className="lg:col-span-7 flex flex-col justify-between">
-            <div className="space-y-8">
-              <h1
-                className="display-editorial text-[#F5F2EB] pb-1 revelar-scroll"
-                style={{ '--atraso': '80ms' } as React.CSSProperties}
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] text-[#261835] leading-[1.1]">
+              Onde beleza, cuidado e <em className="italic text-[#8A651D]">elegância</em> se encontram.
+            </h1>
+
+            <p className="text-base text-[#5E4D70] max-w-md leading-relaxed">
+              Extensões de cílios e design de sobrancelhas com atendimento individual e visagismo
+              exclusivo para realçar o seu olhar.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-6 pt-2">
+              <a
+                href={obterLinkWhatsApp()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="botao-dourado px-7 py-3.5"
               >
-                Onde beleza, cuidado e <em className="italic font-light">elegância</em> se encontram.
-              </h1>
+                Agendar Horário
+              </a>
 
-              <p
-                className="text-base sm:text-lg text-[#9E9689] max-w-[54ch] leading-relaxed font-light revelar-scroll"
-                style={{ '--atraso': '180ms' } as React.CSSProperties}
+              <a
+                href="#cilios"
+                className="text-xs uppercase tracking-[0.14em] text-[#6F4B9E] hover:text-[#261835] font-medium border-b border-[#9B76C9]/40 pb-1 transition-colors"
               >
-                Nosso studio foi desenvolvido para oferecer muito mais do que serviços estéticos:
-                proporcionamos momentos de bem-estar, autoestima e transformação. Cada olhar é único,
-                e nosso compromisso é entregar excelência em cada detalhe.
-              </p>
-
-              {/* Ações Principais Secas */}
-              <div
-                className="flex flex-wrap items-center gap-6 pt-2 revelar-scroll"
-                style={{ '--atraso': '260ms' } as React.CSSProperties}
-              >
-                <a
-                  href={obterLinkWhatsApp()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="botao-editorial px-8 py-4"
-                >
-                  <span>Agendar Horário</span>
-                  <span className="seta-diagonal" aria-hidden="true">
-                    ↗
-                  </span>
-                </a>
-
-                <a
-                  href="#cilios"
-                  className="link-editorial inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#F5F2EB] border-b border-[rgba(245,242,235,0.3)] pb-1.5 hover:border-[#C5A880] hover:text-[#C5A880] transition-colors"
-                >
-                  <span>Explorar Catálogo</span>
-                  <span aria-hidden="true">↓</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Faixa Tipográfica de Diferenciais Sem Caixinhas */}
-            <div
-              className="mt-14 lg:mt-20 pt-8 border-t border-[var(--border-hairline)] grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 revelar-scroll"
-              style={{ '--atraso': '340ms' } as React.CSSProperties}
-            >
-              <div>
-                <span className="indexador-editorial text-[#C5A880] block">01</span>
-                <p className="text-sm text-[#F5F2EB] mt-1.5 font-normal">Garantia de 7 dias</p>
-                <p className="text-xs text-[#9E9689] mt-0.5">Retoque assistido na primeira semana</p>
-              </div>
-              <div className="sm:border-l sm:border-[var(--border-hairline)] sm:pl-6">
-                <span className="indexador-editorial text-[#C5A880] block">02</span>
-                <p className="text-sm text-[#F5F2EB] mt-1.5 font-normal">Atendimento individual</p>
-                <p className="text-xs text-[#9E9689] mt-0.5">Visagismo exclusivo por horário</p>
-              </div>
-              <div className="sm:border-l sm:border-[var(--border-hairline)] sm:pl-6">
-                <span className="indexador-editorial text-[#C5A880] block">03</span>
-                <p className="text-sm text-[#F5F2EB] mt-1.5 font-normal">5% OFF à vista</p>
-                <p className="text-xs text-[#9E9689] mt-0.5">Benefício via Pix ou em espécie</p>
-              </div>
+                Ver valores
+              </a>
             </div>
           </div>
 
-          {/* Coluna Direita: Fotografia Macro Limpa de Alta Resolução */}
+          {/* Fotografia Limpa da Fundadora com Paleta da Marca */}
           <div
-            className="lg:col-span-5 revelar-scroll"
-            style={{ '--atraso': '160ms' } as React.CSSProperties}
+            className="lg:col-span-5 lg:col-start-8 revelar-scroll"
+            style={{ '--atraso': '100ms' } as React.CSSProperties}
           >
-            <div className="imagem-cortina aspect-[4/5] bg-[#171411] border border-[var(--border-hairline)]">
+            <div className="imagem-cortina aspect-[4/5] bg-[#F1EAF8] border border-[var(--borda-suave)]">
               <img
-                src="/images/studio/volume-brasileiro.jpg"
-                alt="Extensão de cílios Volume Brasileiro com acabamento natural no Studio Borges"
-                className="w-full h-full object-cover object-center"
+                src="/images/studio/amanda-atendimento.jpg"
+                alt="Amanda Borges apresentando fios de extensão no Studio Borges"
+                className="w-full h-full object-cover object-top"
               />
-            </div>
-
-            <div className="mt-4 pt-3 border-t border-[var(--border-hairline)] flex items-center justify-between text-[11px] tracking-[0.18em] uppercase text-[#9E9689]">
-              <span>{DADOS_STUDIO.subSlogan}</span>
-              <span className="text-[#C5A880] shrink-0 ml-3">{DADOS_STUDIO.fundadora}</span>
             </div>
           </div>
         </div>

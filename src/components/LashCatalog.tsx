@@ -4,20 +4,18 @@ import { ModalFoto } from './ModalFoto';
 import { usarRevelacaoScroll } from '../hooks/useRevelacaoScroll';
 
 /**
- * Catálogo Lookbook de Extensões de Cílios
- * Layout editorial aberto com fotografias 4:5 (4px), título e preço alinhados
- * por linha seca de 1px e ação direta minimalista.
+ * Catálogo Enxuto de Extensões de Cílios
+ * Fundo lilás suave (#F1EAF8) com foco visual nas fotos, nomes e preços.
  */
 export const LashCatalog: React.FC = () => {
   const [filtroAtivo, definirFiltroAtivo] = useState<'todos' | 'naturais' | 'volume' | 'tendencia'>('todos');
   const [fotoModal, definirFotoModal] = useState<ServicoCilios | null>(null);
-
   const referenciaSecao = usarRevelacaoScroll(filtroAtivo);
 
   const filtros: { id: 'todos' | 'naturais' | 'volume' | 'tendencia'; rotulo: string }[] = [
-    { id: 'todos', rotulo: `Todos (${SERVICOS_CILIOS.length})` },
-    { id: 'naturais', rotulo: 'Naturais & Elegantes' },
-    { id: 'volume', rotulo: 'Densidade & Volume' },
+    { id: 'todos', rotulo: 'Todos (6)' },
+    { id: 'naturais', rotulo: 'Naturais' },
+    { id: 'volume', rotulo: 'Volume' },
     { id: 'tendencia', rotulo: 'Lifting & Power' },
   ];
 
@@ -33,33 +31,27 @@ export const LashCatalog: React.FC = () => {
     <section
       id="cilios"
       ref={referenciaSecao}
-      className="bg-[#0E0C0A] text-[#F5F2EB] py-24 lg:py-32"
+      className="bg-[#F1EAF8] py-20 lg:py-24 border-t border-[var(--borda-suave)]"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        {/* Cabeçalho Editorial Alinhado à Esquerda */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-10">
-          <div className="lg:col-span-7 space-y-4 revelar-scroll">
-            <span className="indexador-editorial text-[#C5A880] block">
-              01 — Extensão de Cílios
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Cabeçalho Limpo */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 border-b border-[var(--borda-suave)] revelar-scroll">
+          <div>
+            <span className="text-xs uppercase tracking-[0.2em] text-[#6F4B9E] font-medium block">
+              Catálogo
             </span>
-            <h2 className="titulo-secao text-[#F5F2EB] pb-1">
-              Técnicas autorais de alongamento
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#261835] mt-1">
+              Extensões de Cílios
             </h2>
           </div>
 
-          <div
-            className="lg:col-span-5 lg:text-right revelar-scroll"
-            style={{ '--atraso': '100ms' } as React.CSSProperties}
-          >
-            <p className="text-sm text-[#9E9689] leading-relaxed lg:ml-auto max-w-md font-light">
-              Cada curvatura, espessura e mapeamento é definido mediante visagismo ocular no início
-              do atendimento. Toque na fotografia para ampliar os fios em alta definição.
-            </p>
-          </div>
+          <p className="text-xs sm:text-sm text-[#5E4D70]">
+            5% OFF no Pix ou dinheiro • Toque na foto para ampliar
+          </p>
         </div>
 
-        {/* Barra de Filtros Minimalista */}
-        <div className="border-y border-[var(--border-hairline)] py-4 mb-14 flex items-center gap-6 overflow-x-auto">
+        {/* Filtros Discretos */}
+        <div className="flex items-center gap-6 py-5 mb-8 overflow-x-auto">
           {filtros.map((filtro) => {
             const ativo = filtroAtivo === filtro.id;
             return (
@@ -67,13 +59,13 @@ export const LashCatalog: React.FC = () => {
                 key={filtro.id}
                 type="button"
                 onClick={() => definirFiltroAtivo(filtro.id)}
-                className={`relative py-1.5 text-[11px] uppercase tracking-[0.18em] whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
-                  ativo ? 'text-[#F5F2EB] font-medium' : 'text-[#9E9689] hover:text-[#F5F2EB]'
+                className={`relative py-1 text-xs uppercase tracking-[0.14em] whitespace-nowrap transition-colors cursor-pointer ${
+                  ativo ? 'text-[#261835] font-semibold' : 'text-[#5E4D70] hover:text-[#261835]'
                 }`}
               >
                 {filtro.rotulo}
                 <span
-                  className={`absolute bottom-0 left-0 right-0 h-px bg-[#C5A880] origin-left transition-transform duration-300 ${
+                  className={`absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#C49B4B] origin-left transition-transform duration-300 ${
                     ativo ? 'scale-x-100' : 'scale-x-0'
                   }`}
                 />
@@ -82,122 +74,77 @@ export const LashCatalog: React.FC = () => {
           })}
         </div>
 
-        {/* Grade Lookbook Editorial Sem Caixas */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+        {/* Grade Limpa: Foto + Título + Preço + 1 Linha */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           {servicosFiltrados.map((servico, indice) => {
             const precoPix = servico.preco * 0.95;
-            const numeroIndice = String(indice + 1).padStart(2, '0');
 
             return (
               <article
                 key={servico.id}
-                className="group flex flex-col justify-between revelar-scroll"
-                style={{ '--atraso': `${(indice % 3) * 100}ms` } as React.CSSProperties}
+                className="group revelar-scroll"
+                style={{ '--atraso': `${(indice % 3) * 80}ms` } as React.CSSProperties}
               >
-                <div>
-                  {/* Fotografia Vertical 4:5 com Abertura em Cortina */}
-                  <div className="relative imagem-cortina aspect-[4/5] bg-[#171411]">
-                    <button
-                      type="button"
-                      onClick={() => definirFotoModal(servico)}
-                      className="block w-full h-full cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#C5A880]"
-                      aria-label={`Ampliar fotografia de ${servico.nome}`}
-                    >
-                      <img
-                        src={servico.imagem}
-                        alt={servico.nome}
-                        className="w-full h-full object-cover object-center"
-                        loading="lazy"
-                      />
-
-                      {/* Índice discreto no canto superior esquerdo */}
-                      <span className="absolute top-3 left-3 bg-[#0E0C0A]/85 px-2.5 py-1 text-[10px] tracking-[0.2em] uppercase text-[#C5A880] numeral-tabular">
-                        {numeroIndice}
-                        {servico.destaque ? ` — ${servico.destaque}` : ''}
+                <div className="relative imagem-cortina aspect-[4/5] bg-white border border-[var(--borda-suave)]">
+                  <button
+                    type="button"
+                    onClick={() => definirFotoModal(servico)}
+                    className="block w-full h-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9B76C9]"
+                    aria-label={`Ampliar foto de ${servico.nome}`}
+                  >
+                    <img
+                      src={servico.imagem}
+                      alt={servico.nome}
+                      className="w-full h-full object-cover object-center"
+                      loading="lazy"
+                    />
+                    {servico.destaque && (
+                      <span className="absolute top-3 left-3 bg-[#FAF8FC]/92 text-[#6F4B9E] px-2.5 py-1 rounded text-[10px] uppercase tracking-[0.14em] font-semibold">
+                        {servico.destaque}
                       </span>
+                    )}
+                  </button>
+                </div>
 
-                      {/* Rótulo minimalista para ampliar */}
-                      <span className="absolute bottom-3 right-3 bg-[#0E0C0A]/85 border border-[var(--border-hairline)] px-3 py-1.5 text-[10px] tracking-[0.18em] uppercase text-[#F5F2EB] group-hover:border-[#C5A880] group-hover:text-[#C5A880] transition-colors">
-                        Ampliar +
-                      </span>
-                    </button>
-                  </div>
-
-                  {/* Título à Esquerda + Preço à Direita na Mesma Linha */}
-                  <div className="pt-5 pb-3 flex items-baseline justify-between gap-4 border-b border-[var(--border-hairline)]">
-                    <h3 className="font-serif text-2xl sm:text-[1.75rem] text-[#F5F2EB] leading-tight">
-                      {servico.nome}
-                    </h3>
-                    <span className="font-serif text-2xl text-[#F5F2EB] shrink-0 numeral-tabular">
+                {/* Título e Preço na Mesma Linha */}
+                <div className="pt-4 pb-2 flex items-baseline justify-between gap-3 border-b border-[var(--borda-suave)]">
+                  <h3 className="font-serif text-2xl text-[#261835] leading-tight">
+                    {servico.nome}
+                  </h3>
+                  <div className="text-right shrink-0 numeral-tabular">
+                    <span className="font-serif text-2xl text-[#261835] block leading-none">
                       R$ {servico.preco.toFixed(0)}
                     </span>
-                  </div>
-
-                  {/* Slogan + Preço no Pix */}
-                  <div className="pt-2.5 flex flex-wrap items-baseline justify-between gap-2 text-[11px] tracking-[0.14em] uppercase">
-                    <span className="text-[#C5A880]">{servico.slogan}</span>
-                    <span className="text-[#9E9689] numeral-tabular">
+                    <span className="text-[11px] text-[#8A651D] font-medium block mt-1">
                       R$ {precoPix.toFixed(2).replace('.', ',')} no Pix
                     </span>
                   </div>
-
-                  {/* Descrição Editorial */}
-                  <p className="text-sm text-[#9E9689] leading-relaxed font-light mt-3">
-                    {servico.descricao}
-                  </p>
-
-                  {/* Especificações Secas Separadas por Traço */}
-                  <ul className="mt-5 pt-4 border-t border-[var(--border-hairline)] space-y-1.5 text-xs text-[#9E9689]">
-                    {servico.diferenciais.map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5">
-                        <span className="text-[#C5A880]" aria-hidden="true">
-                          —
-                        </span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
 
-                {/* Ação Direta Seca Alinhada na Base */}
-                <div className="mt-7 pt-4 border-t border-[var(--border-hairline)]">
-                  <a
-                    href={obterLinkWhatsApp(servico.nome)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-editorial inline-flex items-center justify-between w-full text-xs uppercase tracking-[0.18em] font-medium text-[#F5F2EB] hover:text-[#C5A880] transition-colors"
-                  >
-                    <span>Agendar Procedimento</span>
-                    <span className="seta-diagonal text-sm text-[#C5A880]" aria-hidden="true">
-                      ↗
-                    </span>
-                  </a>
-                </div>
+                <p className="text-xs sm:text-sm text-[#5E4D70] mt-2.5 leading-relaxed">
+                  {servico.descricao}
+                </p>
               </article>
             );
           })}
         </div>
 
-        {/* Nota Editorial Discreta */}
-        <div className="mt-20 pt-8 border-t border-[var(--border-hairline)] flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-[#9E9689]">
-          <p>
-            <strong className="uppercase tracking-[0.18em] text-[#C5A880] font-medium mr-2">
-              Consultoria em Visagismo —
-            </strong>
-            Dúvida na escolha do volume? Realizamos avaliação personalizada gratuita no início do seu atendimento.
+        {/* Botão Único ao Final do Catálogo */}
+        <div className="mt-14 pt-8 border-t border-[var(--borda-suave)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <p className="text-xs sm:text-sm text-[#5E4D70]">
+            Dúvida na escolha? Definimos a técnica ideal na avaliação inicial gratuita.
           </p>
           <a
-            href={obterLinkWhatsApp('Avaliação de Técnica Ideal')}
+            href={obterLinkWhatsApp('Agendar Extensão de Cílios')}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-editorial shrink-0 uppercase tracking-[0.16em] text-[#F5F2EB] hover:text-[#C5A880] transition-colors"
+            className="botao-dourado px-7 py-3.5 shrink-0"
           >
-            Consultar Horários <span className="seta-diagonal">↗</span>
+            Agendar Cílios no WhatsApp
           </a>
         </div>
       </div>
 
-      {/* Modal de Foto Ampliada */}
       {fotoModal && (
         <ModalFoto
           aberto={!!fotoModal}

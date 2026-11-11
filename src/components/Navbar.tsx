@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { DADOS_STUDIO, obterLinkWhatsApp } from '../data/catalog';
+import { obterLinkWhatsApp } from '../data/catalog';
 
 /**
- * Barra de Navegação Editorial
- * Navegação limpa em linha única com ScrollSpy por linha fina e CTA fosco.
+ * Barra de Navegação Limpa (Tons Lavanda & Dourado)
  */
 export const Navbar: React.FC = () => {
   const [rolouPagina, definirRolouPagina] = useState(false);
@@ -11,23 +10,20 @@ export const Navbar: React.FC = () => {
   const [secaoAtiva, definirSecaoAtiva] = useState<string>('cilios');
 
   const linksNavegacao = [
-    { id: 'cilios', numero: '01', nome: 'Cílios', destino: '#cilios' },
-    { id: 'sobrancelhas', numero: '02', nome: 'Sobrancelhas', destino: '#sobrancelhas' },
-    { id: 'manutencao', numero: '03', nome: 'Manutenção', destino: '#manutencao' },
-    { id: 'sobre', numero: '04', nome: 'Sobre', destino: '#sobre' },
-    { id: 'feedbacks', numero: '05', nome: 'Relatos', destino: '#feedbacks' },
-    { id: 'politicas', numero: '06', nome: 'Políticas', destino: '#politicas' },
-    { id: 'localizacao', numero: '07', nome: 'Localização', destino: '#localizacao' },
+    { id: 'cilios', nome: 'Cílios', destino: '#cilios' },
+    { id: 'sobrancelhas', nome: 'Sobrancelhas', destino: '#sobrancelhas' },
+    { id: 'manutencao', nome: 'Manutenção', destino: '#manutencao' },
+    { id: 'sobre', nome: 'Sobre', destino: '#sobre' },
+    { id: 'localizacao', nome: 'Localização', destino: '#localizacao' },
   ];
 
   useEffect(() => {
     const monitorarRolagem = () => {
-      definirRolouPagina(window.scrollY > 30);
-
-      const deslocamentoTopo = window.scrollY + 200;
+      definirRolouPagina(window.scrollY > 20);
+      const deslocamento = window.scrollY + 180;
       for (let i = linksNavegacao.length - 1; i >= 0; i--) {
         const elemento = document.getElementById(linksNavegacao[i].id);
-        if (elemento && deslocamentoTopo >= elemento.offsetTop) {
+        if (elemento && deslocamento >= elemento.offsetTop) {
           definirSecaoAtiva(linksNavegacao[i].id);
           break;
         }
@@ -40,60 +36,42 @@ export const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
-      {/* Faixa superior discreta em desktop */}
-      <div className="hidden md:block bg-[#0E0C0A] border-b border-[var(--border-hairline)] px-6 lg:px-10 py-2">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-[11px] tracking-[0.18em] uppercase text-[#9E9689] numeral-tabular">
-          <span>Osasco, SP — Pestana (Fácil Estacionar)</span>
-          <span className="text-[#C5A880]">5% OFF no Pix ou espécie</span>
-          <a
-            href={DADOS_STUDIO.urlInstagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#F5F2EB] transition-colors"
-          >
-            @lashamandaborges
-          </a>
-        </div>
-      </div>
-
-      {/* Barra principal de navegação */}
-      <nav
-        aria-label="Navegação Principal"
-        className={`px-6 lg:px-10 transition-all duration-300 ${
-          rolouPagina || menuAberto
-            ? 'bg-[#0E0C0A]/94 backdrop-blur-md border-b border-[var(--border-hairline)] py-3.5'
-            : 'bg-transparent py-5'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-6">
-          {/* Assinatura Tipográfica da Marca */}
-          <a href="#inicio" className="group flex flex-col">
-            <span className="font-serif text-xl sm:text-2xl tracking-[0.06em] uppercase text-[#F5F2EB] leading-none">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        rolouPagina || menuAberto
+          ? 'bg-[#FAF8FC]/95 backdrop-blur-md border-b border-[var(--borda-suave)] py-3.5'
+          : 'bg-transparent py-5'
+      }`}
+    >
+      <nav aria-label="Navegação Principal" className="max-w-6xl mx-auto px-6">
+        <div className="flex items-center justify-between gap-6">
+          {/* Marca */}
+          <a href="#inicio" className="flex flex-col">
+            <span className="font-serif text-xl sm:text-2xl text-[#261835] leading-none tracking-tight">
               Studio Borges
             </span>
-            <span className="text-[10px] tracking-[0.24em] uppercase text-[#C5A880] mt-1">
+            <span className="text-[10px] tracking-[0.22em] uppercase text-[#8A651D] mt-1 font-medium">
               Amanda Borges
             </span>
           </a>
 
-          {/* Links Desktop com ScrollSpy minimalista */}
-          <div className="hidden lg:flex items-center gap-7">
+          {/* Links Desktop */}
+          <div className="hidden md:flex items-center gap-7">
             {linksNavegacao.map((item) => {
               const estaAtivo = secaoAtiva === item.id;
               return (
                 <a
                   key={item.id}
                   href={item.destino}
-                  className={`relative py-1.5 text-[11px] uppercase tracking-[0.16em] transition-colors ${
+                  className={`relative py-1 text-xs tracking-wide transition-colors ${
                     estaAtivo
-                      ? 'text-[#F5F2EB] font-medium'
-                      : 'text-[#9E9689] hover:text-[#F5F2EB]'
+                      ? 'text-[#6F4B9E] font-semibold'
+                      : 'text-[#5E4D70] hover:text-[#261835]'
                   }`}
                 >
                   {item.nome}
                   <span
-                    className={`absolute bottom-0 left-0 right-0 h-px bg-[#C5A880] origin-left transition-transform duration-300 ${
+                    className={`absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#C49B4B] origin-left transition-transform duration-300 ${
                       estaAtivo ? 'scale-x-100' : 'scale-x-0'
                     }`}
                   />
@@ -102,76 +80,52 @@ export const Navbar: React.FC = () => {
             })}
           </div>
 
-          {/* CTA Desktop + Botão Menu Mobile */}
-          <div className="flex items-center gap-4">
+          {/* CTA Único + Menu Mobile */}
+          <div className="flex items-center gap-3">
             <a
               href={obterLinkWhatsApp()}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex botao-editorial px-5 py-2.5"
+              className="hidden sm:inline-flex botao-dourado px-5 py-2.5"
             >
-              <span>Agendar</span>
-              <span className="seta-diagonal" aria-hidden="true">
-                ↗
-              </span>
+              Agendar
             </a>
 
             <button
               type="button"
               onClick={() => definirMenuAberto(!menuAberto)}
-              className="lg:hidden px-3 py-2 border border-[var(--border-hairline)] rounded-[2px] text-[11px] uppercase tracking-[0.2em] text-[#F5F2EB] hover:border-[#C5A880] transition-colors cursor-pointer"
+              className="md:hidden px-3 py-1.5 border border-[var(--borda-suave)] rounded-md text-xs text-[#261835] bg-white/80 cursor-pointer"
               aria-expanded={menuAberto}
               aria-label={menuAberto ? 'Fechar menu' : 'Abrir menu'}
             >
-              {menuAberto ? 'Fechar ×' : 'Menu'}
+              {menuAberto ? 'Fechar' : 'Menu'}
             </button>
           </div>
         </div>
 
-        {/* Menu Mobile Editorial */}
+        {/* Menu Mobile */}
         {menuAberto && (
-          <div className="lg:hidden mt-4 pt-6 pb-8 border-t border-[var(--border-hairline)] space-y-6">
-            <div className="flex flex-col divide-y divide-[var(--border-hairline)]">
-              {linksNavegacao.map((item) => {
-                const estaAtivo = secaoAtiva === item.id;
-                return (
-                  <a
-                    key={item.id}
-                    href={item.destino}
-                    onClick={() => definirMenuAberto(false)}
-                    className="py-3.5 flex items-center justify-between text-sm tracking-[0.06em] transition-colors"
-                  >
-                    <span className="flex items-baseline gap-4">
-                      <span className="text-[11px] text-[#C5A880] tracking-[0.2em] numeral-tabular">
-                        {item.numero}
-                      </span>
-                      <span
-                        className={`font-serif text-2xl ${
-                          estaAtivo ? 'text-[#C5A880]' : 'text-[#F5F2EB]'
-                        }`}
-                      >
-                        {item.nome}
-                      </span>
-                    </span>
-                    <span className="text-xs text-[#9E9689]" aria-hidden="true">
-                      ↗
-                    </span>
-                  </a>
-                );
-              })}
+          <div className="md:hidden mt-4 pt-4 pb-6 border-t border-[var(--borda-suave)] space-y-4">
+            <div className="flex flex-col divide-y divide-[var(--borda-suave)]">
+              {linksNavegacao.map((item) => (
+                <a
+                  key={item.id}
+                  href={item.destino}
+                  onClick={() => definirMenuAberto(false)}
+                  className="py-3 text-base text-[#261835] hover:text-[#6F4B9E] transition-colors"
+                >
+                  {item.nome}
+                </a>
+              ))}
             </div>
-
             <a
               href={obterLinkWhatsApp()}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => definirMenuAberto(false)}
-              className="botao-editorial w-full py-4"
+              className="botao-dourado w-full py-3"
             >
-              <span>Agendar Horário</span>
-              <span className="seta-diagonal" aria-hidden="true">
-                ↗
-              </span>
+              Agendar Horário
             </a>
           </div>
         )}
