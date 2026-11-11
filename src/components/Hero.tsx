@@ -1,24 +1,20 @@
 import React from 'react';
 import { obterLinkWhatsApp } from '../data/catalog';
-import { usarRevelacaoScroll } from '../hooks/useRevelacaoScroll';
 
 /**
  * Seção Inicial (Hero) Leve e Enxuta
  * Foco direto na proposta de valor, foto da especialista e botão principal de agendamento.
  */
 export const Hero: React.FC = () => {
-  const referenciaSecao = usarRevelacaoScroll();
-
   return (
     <section
       id="inicio"
-      ref={referenciaSecao}
       className="bg-[#FAF8FC] pt-20 pb-12 sm:pt-28 sm:pb-16 lg:pt-36 lg:pb-24"
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 sm:gap-10 lg:gap-12 items-center">
           {/* Texto Direto e Claro */}
-          <div className="lg:col-span-6 space-y-4 sm:space-y-6 revelar-scroll">
+          <div className="lg:col-span-6 space-y-4 sm:space-y-6">
             <span className="hidden sm:block text-xs uppercase tracking-[0.2em] text-[#6F4B9E] font-medium">
               Osasco, SP — Cílios &amp; Sobrancelhas
             </span>
@@ -52,10 +48,7 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* Fotografia Limpa da Fundadora */}
-          <div
-            className="lg:col-span-5 lg:col-start-8 revelar-scroll"
-            style={{ '--atraso': '100ms' } as React.CSSProperties}
-          >
+          <div className="lg:col-span-5 lg:col-start-8">
             <div className="imagem-cortina aspect-[4/3] sm:aspect-[4/5] bg-[#F1EAF8] border border-[var(--borda-suave)]">
               <img
                 src="/images/studio/amanda-atendimento.webp"

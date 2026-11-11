@@ -20,9 +20,17 @@ export const Navbar: React.FC = () => {
   const referenciaMenuMobile = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const aoRolar = () => definirRolouPagina(window.scrollY > 20);
+    let rolouAnterior = window.scrollY > 20;
+    definirRolouPagina(rolouAnterior);
+
+    const aoRolar = () => {
+      const passou = window.scrollY > 20;
+      if (passou !== rolouAnterior) {
+        rolouAnterior = passou;
+        definirRolouPagina(passou);
+      }
+    };
     window.addEventListener('scroll', aoRolar, { passive: true });
-    aoRolar();
 
     if (typeof IntersectionObserver === 'undefined') {
       return () => window.removeEventListener('scroll', aoRolar);
@@ -77,10 +85,10 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,padding] duration-300 ${
         rolouPagina
-          ? 'bg-[#FAF8FC]/95 backdrop-blur-md border-b border-[var(--borda-suave)] py-3 sm:py-3.5'
-          : 'bg-[#FAF8FC]/85 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none py-3.5 sm:py-5'
+          ? 'bg-[#FAF8FC]/95 backdrop-blur-[6px] border-b border-[var(--borda-suave)] py-3 sm:py-3.5'
+          : 'bg-[#FAF8FC]/95 sm:bg-transparent sm:backdrop-blur-none py-3.5 sm:py-5'
       }`}
     >
       <nav aria-label="Navegação Principal" className="max-w-6xl mx-auto px-5 sm:px-6">

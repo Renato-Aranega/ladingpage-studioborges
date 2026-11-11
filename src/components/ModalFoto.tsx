@@ -41,6 +41,7 @@ export const ModalFoto: React.FC<ModalFotoProps> = ({
       role="dialog"
       aria-modal="true"
       aria-label={`Visualização de ${titulo}`}
+      data-lenis-prevent
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#261835]/60 backdrop-blur-sm"
       onClick={aoFechar}
     >
