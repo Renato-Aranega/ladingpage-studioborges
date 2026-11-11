@@ -46,16 +46,6 @@ export const BrowServices: React.FC = () => {
                       loading="lazy"
                     />
 
-                    {/* Preço em Badge Nobre Flutuante com Alta Nitidez */}
-                    <div className="absolute bottom-3 left-3 z-10 bg-[#0F0814]/85 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-[#DFB15B]/35 shadow-lg text-left">
-                      <span className="text-lg font-serif font-bold text-[#FDFCFA] leading-none block">
-                        R$ {servico.preco.toFixed(2).replace('.', ',')}
-                      </span>
-                      <span className="text-[10px] text-[#DFB15B] font-semibold block mt-0.5">
-                        ou R$ {precoPix.toFixed(2).replace('.', ',')} no Pix (5% OFF)
-                      </span>
-                    </div>
-
                     {/* Botão para Ampliar Foto */}
                     <button
                       onClick={() => definirFotoModal(servico)}
@@ -67,16 +57,39 @@ export const BrowServices: React.FC = () => {
                   </div>
 
                   {/* Descrição e Benefícios */}
-                  <div className="p-5 sm:p-6 space-y-3">
-                    <h3 className="text-xl font-serif font-bold texto-principal group-hover:text-[#DFB15B] transition-colors">
-                      {servico.nome}
-                    </h3>
-                    <p className="text-xs font-semibold text-[#DFB15B] uppercase tracking-wider">
-                      {servico.slogan}
-                    </p>
-                    <p className="text-xs sm:text-sm texto-secundario leading-relaxed font-light">
-                      {servico.descricao}
-                    </p>
+                  <div className="p-5 sm:p-6 space-y-4">
+                    <div className="space-y-2.5">
+                      <h3 className="text-xl sm:text-2xl font-serif font-bold texto-principal group-hover:text-[#DFB15B] transition-colors leading-tight">
+                        {servico.nome}
+                      </h3>
+                      <p className="text-xs font-semibold text-[#DFB15B] uppercase tracking-wider">
+                        {servico.slogan}
+                      </p>
+
+                      {/* BLOCO DE VALOR EM ALTO DESTAQUE */}
+                      <div className="p-3.5 sm:p-4 rounded-2xl fundo-elevado border borda-destaque shadow-sm flex items-center justify-between">
+                        <div>
+                          <span className="text-[10px] uppercase tracking-widest text-[#DFB15B] font-bold block leading-none">
+                            Valor Oficial
+                          </span>
+                          <div className="text-2xl sm:text-3xl font-serif font-extrabold texto-principal mt-1 leading-none">
+                            R$ {servico.preco.toFixed(2).replace('.', ',')}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gold-gradient text-[#0F0814] font-black text-xs shadow-sm">
+                            R$ {precoPix.toFixed(2).replace('.', ',')} Pix
+                          </span>
+                          <span className="text-[10px] text-[#DFB15B] font-bold block mt-1">
+                            5% OFF à vista
+                          </span>
+                        </div>
+                      </div>
+
+                      <p className="text-xs sm:text-sm texto-secundario leading-relaxed font-light">
+                        {servico.descricao}
+                      </p>
+                    </div>
 
                     {/* Lista de Benefícios */}
                     <div className="space-y-1.5 pt-3 border-t borda-suave">

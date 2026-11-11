@@ -123,7 +123,7 @@ export const About: React.FC = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gold-gradient text-[#0F0814] font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition-all botao-magnetico"
               >
-                <span>Conversar Diretamente com Amanda</span>
+                <span>Agendar Minha Experiência VIP</span>
               </a>
             </div>
 

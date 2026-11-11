@@ -73,7 +73,7 @@ export const Faq: React.FC = () => {
             rel="noopener noreferrer"
             className="text-[#DFB15B] font-bold hover:underline inline-flex items-center gap-1 mt-1"
           >
-            Fale diretamente com a Amanda pelo WhatsApp &rarr;
+            Tire suas dúvidas no WhatsApp com nossa equipe &rarr;
           </a>
         </div>
 

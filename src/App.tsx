@@ -12,7 +12,6 @@ import { Policies } from './components/Policies';
 import { LocationSection } from './components/LocationSection';
 import { Faq } from './components/Faq';
 import { Footer } from './components/Footer';
-import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
 /**
  * Estrutura Principal da Landing Page
@@ -60,9 +59,6 @@ const ConteudoLandingPage: React.FC = () => {
 
       {/* Rodapé Institucional */}
       <Footer />
-
-      {/* Botões de Ação para WhatsApp */}
-      <FloatingWhatsApp />
     </div>
   );
 };

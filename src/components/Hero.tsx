@@ -93,22 +93,6 @@ export const Hero: React.FC = () => {
                   alt="Amanda Borges - Lash Designer Studio Borges"
                   className="w-full h-full object-cover object-center filter brightness-[0.98] hover:scale-105 transition-transform duration-700"
                 />
-
-                {/* Card Inferior Flutuante com Nome e Instagram */}
-                <div className="absolute bottom-5 left-5 right-5 text-left fundo-superficie-translucido backdrop-blur-md p-4 rounded-xl border borda-destaque shadow-lg">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs uppercase tracking-widest text-[#DFB15B] font-semibold">Fundadora & Especialista</p>
-                      <p className="text-base font-serif font-bold texto-principal">Amanda Borges</p>
-                    </div>
-                    <span className="text-[11px] bg-[#7E22CE]/20 text-[#A855F7] px-2.5 py-1 rounded-full border border-[#A855F7]/30 font-medium">
-                      @lashamandaborges
-                    </span>
-                  </div>
-                  <p className="text-xs texto-secundario mt-1.5 font-light">
-                    "O brilho que você procura começa aqui."
-                  </p>
-                </div>
               </div>
 
               {/* Tag Flutuante: Desconto Pix */}
