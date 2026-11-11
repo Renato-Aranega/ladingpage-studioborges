@@ -73,14 +73,23 @@ export const Navbar: React.FC = () => {
     >
       <nav aria-label="Navegação Principal" className="max-w-6xl mx-auto px-5 sm:px-6">
         <div className="flex items-center justify-between gap-4 sm:gap-6">
-          {/* Marca */}
-          <a href="#inicio" className="flex flex-col">
-            <span className="font-serif text-lg sm:text-2xl text-[#261835] leading-none tracking-tight">
-              Studio Borges
-            </span>
-            <span className="hidden sm:block text-[10px] tracking-[0.22em] uppercase text-[#8A651D] mt-1 font-medium">
-              Amanda Borges
-            </span>
+          {/* Marca com Monograma Oficial */}
+          <a href="#inicio" className="flex items-center gap-2.5 sm:gap-3">
+            <img
+              src="/images/studio/logo-monograma.webp"
+              alt="Monograma Studio Borges"
+              width={40}
+              height={40}
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border border-[#C49B4B]/60 shrink-0"
+            />
+            <div className="flex flex-col">
+              <span className="font-serif text-lg sm:text-2xl text-[#261835] leading-none tracking-tight">
+                Studio Borges
+              </span>
+              <span className="hidden sm:block text-[10px] tracking-[0.22em] uppercase text-[#8A651D] mt-1 font-medium">
+                Amanda Borges
+              </span>
+            </div>
           </a>
 
           {/* Links Desktop */}
