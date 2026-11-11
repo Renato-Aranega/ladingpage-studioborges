@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { obterLinkWhatsApp } from '../data/catalog';
 
 const LINKS_NAVEGACAO = [
@@ -11,12 +11,13 @@ const LINKS_NAVEGACAO = [
 
 /**
  * Barra de Navegação Limpa (Tons Lavanda & Dourado)
- * ScrollSpy leve via IntersectionObserver e bloqueio de rolagem no menu mobile.
+ * ScrollSpy leve via IntersectionObserver e menu hambúrguer compacto no mobile.
  */
 export const Navbar: React.FC = () => {
   const [rolouPagina, definirRolouPagina] = useState(false);
   const [menuAberto, definirMenuAberto] = useState(false);
   const [secaoAtiva, definirSecaoAtiva] = useState<string>('cilios');
+  const referenciaMenuMobile = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const aoRolar = () => definirRolouPagina(window.scrollY > 20);
@@ -49,24 +50,35 @@ export const Navbar: React.FC = () => {
     };
   }, []);
 
-  // Trava a rolagem do fundo e fecha com Esc quando o menu mobile está aberto
+  // Fecha o menu compacto ao pressionar Esc ou tocar/clicar fora dele
   useEffect(() => {
     if (!menuAberto) return;
-    document.body.style.overflow = 'hidden';
+
     const aoPressionarEsc = (evento: KeyboardEvent) => {
       if (evento.key === 'Escape') definirMenuAberto(false);
     };
+
+    const aoClicarFora = (evento: PointerEvent) => {
+      if (
+        referenciaMenuMobile.current &&
+        !referenciaMenuMobile.current.contains(evento.target as Node)
+      ) {
+        definirMenuAberto(false);
+      }
+    };
+
     window.addEventListener('keydown', aoPressionarEsc);
+    document.addEventListener('pointerdown', aoClicarFora);
     return () => {
-      document.body.style.overflow = '';
       window.removeEventListener('keydown', aoPressionarEsc);
+      document.removeEventListener('pointerdown', aoClicarFora);
     };
   }, [menuAberto]);
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        rolouPagina || menuAberto
+        rolouPagina
           ? 'bg-[#FAF8FC]/95 backdrop-blur-md border-b border-[var(--borda-suave)] py-3 sm:py-3.5'
           : 'bg-[#FAF8FC]/85 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none py-3.5 sm:py-5'
       }`}
@@ -117,8 +129,8 @@ export const Navbar: React.FC = () => {
             })}
           </div>
 
-          {/* CTA Único + Menu Mobile */}
-          <div className="flex items-center gap-3">
+          {/* CTA Único + Menu Hambúrguer Compacto */}
+          <div ref={referenciaMenuMobile} className="relative flex items-center gap-3">
             <a
               href={obterLinkWhatsApp()}
               target="_blank"
@@ -130,42 +142,72 @@ export const Navbar: React.FC = () => {
 
             <button
               type="button"
-              onClick={() => definirMenuAberto(!menuAberto)}
-              className="md:hidden px-3 py-1.5 border border-[var(--borda-suave)] rounded-md text-xs text-[#261835] bg-white/80 cursor-pointer"
+              onClick={() => definirMenuAberto((aberto) => !aberto)}
+              className="md:hidden w-10 h-10 inline-flex items-center justify-center border border-[var(--borda-suave)] rounded-lg bg-white/90 hover:border-[#9B76C9]/45 transition-colors cursor-pointer"
               aria-expanded={menuAberto}
+              aria-controls="menu-mobile-compacto"
               aria-label={menuAberto ? 'Fechar menu' : 'Abrir menu'}
             >
-              {menuAberto ? 'Fechar' : 'Menu'}
+              <span className="relative w-[18px] h-4 flex items-center justify-center" aria-hidden="true">
+                <span
+                  className={`absolute w-[18px] h-[1.5px] bg-[#261835] rounded-full transition-all duration-300 ${
+                    menuAberto ? 'rotate-45 translate-y-0' : '-translate-y-[5px]'
+                  }`}
+                />
+                <span
+                  className={`absolute w-[18px] h-[1.5px] bg-[#261835] rounded-full transition-all duration-200 ${
+                    menuAberto ? 'opacity-0 scale-x-0' : 'opacity-100 scale-x-100'
+                  }`}
+                />
+                <span
+                  className={`absolute w-[18px] h-[1.5px] bg-[#261835] rounded-full transition-all duration-300 ${
+                    menuAberto ? '-rotate-45 translate-y-0' : 'translate-y-[5px]'
+                  }`}
+                />
+              </span>
             </button>
+
+            {/* Menu Flutuante Compacto (Não ocupa toda a tela) */}
+            {menuAberto && (
+              <div
+                id="menu-mobile-compacto"
+                className="md:hidden absolute right-0 top-full mt-2.5 w-60 max-w-[calc(100vw-2.5rem)] rounded-xl bg-white/95 backdrop-blur-md border border-[var(--borda-suave)] shadow-[0_10px_28px_rgba(38,24,53,0.08)] p-3 z-50"
+              >
+                <div className="flex flex-col gap-0.5">
+                  {LINKS_NAVEGACAO.map((item) => {
+                    const estaAtivo = secaoAtiva === item.id;
+                    return (
+                      <a
+                        key={item.id}
+                        href={item.destino}
+                        onClick={() => definirMenuAberto(false)}
+                        aria-current={estaAtivo ? 'location' : undefined}
+                        className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                          estaAtivo
+                            ? 'bg-[#F1EAF8] text-[#6F4B9E] font-semibold'
+                            : 'text-[#261835] hover:bg-[#FAF8FC] hover:text-[#6F4B9E]'
+                        }`}
+                      >
+                        {item.nome}
+                      </a>
+                    );
+                  })}
+                </div>
+                <div className="pt-2.5 mt-2 border-t border-[var(--borda-suave)] sm:hidden">
+                  <a
+                    href={obterLinkWhatsApp()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => definirMenuAberto(false)}
+                    className="botao-dourado w-full py-2.5"
+                  >
+                    Agendar Horário
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-
-        {/* Menu Mobile */}
-        {menuAberto && (
-          <div className="md:hidden mt-4 pt-4 pb-6 border-t border-[var(--borda-suave)] space-y-4">
-            <div className="flex flex-col divide-y divide-[var(--borda-suave)]">
-              {LINKS_NAVEGACAO.map((item) => (
-                <a
-                  key={item.id}
-                  href={item.destino}
-                  onClick={() => definirMenuAberto(false)}
-                  className="py-3 text-base text-[#261835] hover:text-[#6F4B9E] transition-colors"
-                >
-                  {item.nome}
-                </a>
-              ))}
-            </div>
-            <a
-              href={obterLinkWhatsApp()}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => definirMenuAberto(false)}
-              className="botao-dourado w-full py-3"
-            >
-              Agendar Horário
-            </a>
-          </div>
-        )}
       </nav>
     </header>
   );
