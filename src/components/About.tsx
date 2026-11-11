@@ -1,136 +1,145 @@
 import React from 'react';
-import { Sparkles, Shield, Award, Heart, CheckCircle2 } from 'lucide-react';
 import { obterLinkWhatsApp } from '../data/catalog';
+import { usarRevelacaoScroll } from '../hooks/useRevelacaoScroll';
 
 /**
- * Seção Sobre a Fundadora e o Estúdio
+ * Seção Sobre Amanda Borges
+ * Fundo Alabaster (#F4EFEA), composição assimétrica com 2 fotografias reais
+ * bem recortadas e especificações em lista horizontal com divisórias de 1px.
  */
 export const About: React.FC = () => {
+  const referenciaSecao = usarRevelacaoScroll();
+
+  const especificacoes = [
+    {
+      numero: '01',
+      titulo: 'Biossegurança Total',
+      descricao:
+        'Materiais 100% esterilizados, descartáveis individuais e ambiente rigorosamente higienizado.',
+    },
+    {
+      numero: '02',
+      titulo: 'Produtos Anvisa',
+      descricao:
+        'Adesivos médicos de baixa emissão de vapores e fios tecnológicos de seda hipoalergênicos.',
+    },
+    {
+      numero: '03',
+      titulo: 'Conforto Absoluto',
+      descricao:
+        'Maca anatômica com manta aconchegante, climatização perfeita e playlist relaxante.',
+    },
+    {
+      numero: '04',
+      titulo: 'Garantia de 7 Dias',
+      descricao:
+        'Compromisso com o resultado: retoque ou ajuste gratuito caso necessário na primeira semana.',
+    },
+  ];
+
   return (
-    <section id="sobre" className="py-20 sm:py-24 relative border-t borda-suave fundo-secundario overflow-hidden transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
-          {/* Galeria de Fotos do Estúdio e Atendimento */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-            <div className="space-y-4">
-              <div className="rounded-2xl overflow-hidden border borda-destaque aspect-[3/4] fundo-superficie shadow-xl group">
+    <section
+      id="sobre"
+      ref={referenciaSecao}
+      className="bg-[#F4EFEA] text-[#171411] py-24 lg:py-32 border-t border-[var(--border-hairline-dark)]"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Composição Assimétrica com Apenas 2 Fotografias Reais */}
+          <div className="lg:col-span-5 relative pb-12 sm:pb-16 revelar-scroll">
+            {/* Foto Principal Grande (Amanda no estúdio com paleta de fios) */}
+            <div className="w-[84%] imagem-cortina aspect-[4/5] bg-[#E8E1D9]">
+              <img
+                src="/images/studio/amanda-atendimento.jpg"
+                alt="Amanda Borges apresentando paleta de fios no Studio Borges"
+                className="w-full h-full object-cover object-top"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Foto Secundária Deslocada no Eixo Y (Close de olhar impecável) */}
+            <div className="w-[54%] ml-auto -mt-20 sm:-mt-28 relative z-10 p-1.5 bg-[#F4EFEA]">
+              <div className="imagem-cortina aspect-[4/5] bg-[#E8E1D9]">
                 <img
-                  src="/images/studio/amanda-borges-1.jpeg"
-                  alt="Amanda Borges atendendo"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-              </div>
-              <div className="rounded-2xl overflow-hidden border borda-destaque aspect-square fundo-superficie shadow-xl group">
-                <img
-                  src="/images/studio/studio-experience-2.jpeg"
-                  alt="Ambiente Studio Borges"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  src="/images/studio/volume-hibrido.jpg"
+                  alt="Close detalhado de extensão de cílios no Studio Borges"
+                  className="w-full h-full object-cover object-center"
                   loading="lazy"
                 />
               </div>
             </div>
 
-            <div className="space-y-4 pt-6">
-              <div className="rounded-2xl overflow-hidden border borda-destaque aspect-square fundo-superficie shadow-xl group">
-                <img
-                  src="/images/studio/amanda-borges-2.jpeg"
-                  alt="Detalhes Studio Borges"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-              </div>
-              <div className="rounded-2xl overflow-hidden border borda-destaque aspect-[3/4] fundo-superficie shadow-xl group">
-                <img
-                  src="/images/studio/studio-experience-1.jpeg"
-                  alt="Experiência de relaxamento Studio Borges"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-              </div>
+            <div className="mt-4 pt-3 border-t border-[var(--border-hairline-dark)] flex items-center justify-between text-[11px] tracking-[0.18em] uppercase text-[#5C5449]">
+              <span>Amanda Borges</span>
+              <span>Visagismo &amp; Extensões</span>
             </div>
           </div>
 
-          {/* Biografia e Pilares de Atendimento */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full fundo-card border borda-destaque text-xs font-semibold text-[#DFB15B] shadow-sm">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>EXPERIÊNCIA STUDIO BORGES</span>
+          {/* Biografia e Especificações com Divisórias de 1px */}
+          <div
+            className="lg:col-span-7 space-y-8 revelar-scroll"
+            style={{ '--atraso': '120ms' } as React.CSSProperties}
+          >
+            <div className="space-y-4">
+              <span className="indexador-editorial text-[#7A5E3A] block">
+                04 — Sobre o Ateliê
+              </span>
+              <h2 className="titulo-secao text-[#171411] pb-1">
+                Mais do que estética: um ritual de cuidado
+              </h2>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold tracking-tight texto-principal leading-tight">
-              Mais do que estética: um momento de <span className="text-gold-gradient italic">transformação e carinho</span>
-            </h2>
-
-            <p className="text-base texto-secundario leading-relaxed font-light">
-              Fundado por <strong>Amanda Borges</strong>, o Studio Borges nasceu do desejo de transformar o procedimento de extensão de cílios em um verdadeiro ritual de autocuidado e relaxamento.
-            </p>
-
-            <p className="text-base texto-secundario leading-relaxed font-light">
-              Entendemos que cada mulher tem uma estrutura facial, curvatura e rotina própria. Por isso, nunca aplicamos a mesma fórmula: analisamos o visagismo do seu olhar, selecionamos espessuras e curvaturas que não pesem no seu dia a dia e garantimos que você saia se sentindo radiante e confiante.
-            </p>
-
-            {/* Os 4 Pilares da Experiência */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div className="p-4 rounded-xl fundo-superficie border borda-suave space-y-1 shadow-sm">
-                <div className="flex items-center gap-2 text-[#DFB15B] font-semibold text-sm">
-                  <Shield className="w-4 h-4" />
-                  <span>Biossegurança Total</span>
-                </div>
-                <p className="text-xs texto-secundario font-light">
-                  Materiais 100% esterilizados, descartáveis individuais e ambiente rigorosamente higienizado.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-xl fundo-superficie border borda-suave space-y-1 shadow-sm">
-                <div className="flex items-center gap-2 text-[#DFB15B] font-semibold text-sm">
-                  <Award className="w-4 h-4" />
-                  <span>Produtos Anvisa</span>
-                </div>
-                <p className="text-xs texto-secundario font-light">
-                  Adesivos médicos de baixa emissão de vapores e fios tecnológicos de seda hipoalergênicos.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-xl fundo-superficie border borda-suave space-y-1 shadow-sm">
-                <div className="flex items-center gap-2 text-[#DFB15B] font-semibold text-sm">
-                  <Heart className="w-4 h-4 text-[#A855F7]" />
-                  <span>Conforto Absoluto</span>
-                </div>
-                <p className="text-xs texto-secundario font-light">
-                  Maca anatômica com manta aconchegante, climatização perfeita e playlist relaxante.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-xl fundo-superficie border borda-suave space-y-1 shadow-sm">
-                <div className="flex items-center gap-2 text-[#DFB15B] font-semibold text-sm">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>Garantia de 7 Dias</span>
-                </div>
-                <p className="text-xs texto-secundario font-light">
-                  Compromisso com o resultado: retoque ou ajuste gratuito caso necessário na primeira semana.
-                </p>
-              </div>
+            <div className="space-y-4 text-base text-[#5C5449] leading-relaxed max-w-[60ch]">
+              <p>
+                Fundado por <strong className="font-medium text-[#171411]">Amanda Borges</strong>, o
+                Studio Borges nasceu do desejo de transformar o procedimento de extensão de cílios
+                em um verdadeiro ritual de autocuidado e relaxamento.
+              </p>
+              <p>
+                Entendemos que cada mulher tem uma estrutura facial, curvatura e rotina própria. Por
+                isso, nunca aplicamos a mesma fórmula: analisamos o visagismo do seu olhar,
+                selecionamos espessuras e curvaturas que não pesem no seu dia a dia e garantimos que
+                você saia se sentindo radiante e confiante.
+              </p>
             </div>
 
-            {/* Chamada para Conversa */}
-            <div className="pt-4">
+            {/* Lista de Especificações em 1px (Substitui os 4 mini-cards) */}
+            <div className="pt-2 border-b border-[var(--border-hairline-dark)] divide-y divide-[var(--border-hairline-dark)]">
+              {especificacoes.map((item) => (
+                <div
+                  key={item.numero}
+                  className="py-4 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-baseline"
+                >
+                  <div className="sm:col-span-5 flex items-baseline gap-3">
+                    <span className="indexador-editorial text-[#7A5E3A]">
+                      {item.numero}
+                    </span>
+                    <span className="font-serif text-xl text-[#171411]">
+                      {item.titulo}
+                    </span>
+                  </div>
+                  <p className="sm:col-span-7 text-xs sm:text-sm text-[#5C5449] leading-relaxed">
+                    {item.descricao}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-2">
               <a
                 href={obterLinkWhatsApp('Conhecer o Studio')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gold-gradient text-[#0F0814] font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition-all botao-magnetico"
+                className="botao-editorial-escuro px-8 py-4"
               >
-                <span>Agendar Minha Experiência VIP</span>
+                <span>Agendar Experiência</span>
+                <span className="seta-diagonal" aria-hidden="true">
+                  ↗
+                </span>
               </a>
             </div>
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

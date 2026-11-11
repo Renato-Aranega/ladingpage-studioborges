@@ -1,23 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <defs>
-    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFF1D0" />
-      <stop offset="50%" stop-color="#DFB15B" />
-      <stop offset="100%" stop-color="#997D2B" />
-    </linearGradient>
-    <linearGradient id="purpleBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#180E21" />
-      <stop offset="100%" stop-color="#0F0814" />
-    </linearGradient>
-  </defs>
-  <!-- Background circular badge -->
-  <circle cx="50" cy="50" r="48" fill="url(#purpleBg)" stroke="url(#goldGradient)" stroke-width="3" />
-  <circle cx="50" cy="50" r="44" fill="none" stroke="url(#goldGradient)" stroke-width="0.8" opacity="0.6" stroke-dasharray="2,3" />
-  
-  <!-- Monogram SB -->
-  <text x="50" y="58" font-family="'Playfair Display', Georgia, serif" font-size="34" font-weight="700" fill="url(#goldGradient)" text-anchor="middle" letter-spacing="1">SB</text>
-  
-  <!-- Subtle Eyelash / Star Accent -->
-  <path d="M50 20 Q55 24 58 28 Q50 25 42 28 Q45 24 50 20Z" fill="url(#goldGradient)" opacity="0.9" />
+  <rect width="100" height="100" fill="#0E0C0A" />
+  <rect x="6" y="6" width="88" height="88" fill="none" stroke="#C5A880" stroke-width="1.5" stroke-opacity="0.7" />
+  <text
+    x="50"
+    y="61"
+    font-family="'Cormorant Garamond', 'Playfair Display', Georgia, serif"
+    font-size="40"
+    font-weight="400"
+    letter-spacing="2"
+    fill="#F5F2EB"
+    text-anchor="middle"
+  >SB</text>
+  <line x1="28" y1="73" x2="72" y2="73" stroke="#C5A880" stroke-width="1.5" />
 </svg>
-

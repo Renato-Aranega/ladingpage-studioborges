@@ -149,7 +149,7 @@ export const SERVICOS_SOBRANCELHAS: ServicoSobrancelha[] = [
     slogan: "Destaque e preenchimento de falhas",
     descricao: "Design personalizado com aplicação de henna premium de alta fixação para realçar o formato, corrigir pequenas falhas e destacar o olhar.",
     preco: 55,
-    imagem: "/images/studio/design-henna.jpeg",
+    imagem: "/images/studio/design-henna-limpo.jpg",
     beneficios: [
       "Pigmentação gradual e natural",
       "Cobertura de falhas e realce de cor",
@@ -162,7 +162,7 @@ export const SERVICOS_SOBRANCELHAS: ServicoSobrancelha[] = [
     slogan: "Nutrição e estímulo de crescimento",
     descricao: "Tratamento profundo de cuidado e fortalecimento dos fios, auxiliando na recuperação celular e no desenvolvimento de sobrancelhas cheias e saudáveis.",
     preco: 95,
-    imagem: "/images/studio/protocolo-recuperacao.jpeg",
+    imagem: "/images/studio/protocolo-recuperacao-limpo.jpg",
     beneficios: [
       "Estimulação de folículos dormentes",
       "Blend exclusivo de vitaminas e óleos nobres",

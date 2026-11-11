@@ -1,137 +1,143 @@
 import React from 'react';
-import { MapPin, Navigation, Car, Clock, Phone, Sparkles } from 'lucide-react';
-import { InstagramIcon } from './icons/InstagramIcon';
 import { DADOS_STUDIO, obterLinkWhatsApp } from '../data/catalog';
+import { usarRevelacaoScroll } from '../hooks/useRevelacaoScroll';
 
 /**
- * Seção de Localização e Informações de Acesso
+ * Seção de Localização e Acesso
+ * Numerais tipográficos, linhas secas e filtro editorial escuro aplicado ao mapa.
  */
 export const LocationSection: React.FC = () => {
+  const referenciaSecao = usarRevelacaoScroll();
+
   return (
-    <section id="localizacao" className="py-20 sm:py-24 relative border-t borda-suave fundo-secundario transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Cabeçalho */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full fundo-card border borda-destaque text-xs font-semibold text-[#DFB15B] shadow-sm">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>LOCALIZAÇÃO PRIVILEGIADA</span>
+    <section
+      id="localizacao"
+      ref={referenciaSecao}
+      className="bg-[#0E0C0A] text-[#F5F2EB] py-24 lg:py-32 border-t border-[var(--border-hairline)]"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        {/* Cabeçalho Alinhado à Esquerda */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-10">
+          <div className="lg:col-span-7 space-y-4 revelar-scroll">
+            <span className="indexador-editorial text-[#C5A880] block">
+              08 — Localização &amp; Acesso
+            </span>
+            <h2 className="titulo-secao text-[#F5F2EB] pb-1">
+              Fácil acesso em Osasco
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold tracking-tight texto-principal">
-            Fácil Acesso em <span className="text-gold-gradient italic">Osasco</span>
-          </h2>
-          <p className="text-sm sm:text-base texto-secundario font-light">
-            Nosso espaço foi escolhido para oferecer comodidade, tranquilidade e praticidade para sua rotina, com vaga e facilidade para estacionar seu carro.
-          </p>
+
+          <div
+            className="lg:col-span-5 lg:text-right revelar-scroll"
+            style={{ '--atraso': '100ms' } as React.CSSProperties}
+          >
+            <p className="text-sm text-[#9E9689] leading-relaxed lg:ml-auto max-w-md font-light">
+              Nosso espaço foi escolhido para oferecer privacidade, tranquilidade e facilidade para
+              estacionar seu veículo.
+            </p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
-          {/* Coluna da Esquerda: Dados de Endereço e Facilidades (5 colunas) */}
-          <div className="lg:col-span-5 fundo-superficie rounded-2xl p-6 sm:p-8 border borda-destaque shadow-xl flex flex-col justify-between space-y-6">
-            <div className="space-y-6">
-              {/* Destaque do Endereço */}
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#7E22CE]/20 border borda-destaque flex items-center justify-center text-[#DFB15B] shrink-0 shadow-md">
-                  <MapPin className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-xs uppercase tracking-wider text-[#DFB15B] font-semibold block">
-                    Endereço Oficial
-                  </span>
-                  <p className="text-base font-bold texto-principal mt-1">
-                    {DADOS_STUDIO.endereco}
-                  </p>
-                  <p className="text-xs texto-secundario mt-1 font-light">
-                    Bairro Pestana • Osasco - SP
-                  </p>
-                </div>
+        <div className="h-px w-full bg-[var(--border-hairline)] mb-12 linha-desenho" />
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+          {/* Coluna da Esquerda: Especificações de Endereço Sem Ícones em Caixas */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-8 revelar-scroll">
+            <div className="divide-y divide-[var(--border-hairline)] border-b border-[var(--border-hairline)]">
+              {/* 01 - Endereço */}
+              <div className="pb-6 space-y-1.5">
+                <span className="indexador-editorial text-[#C5A880] block">
+                  01 — Endereço Oficial
+                </span>
+                <p className="font-serif text-2xl text-[#F5F2EB] leading-snug pt-1">
+                  {DADOS_STUDIO.endereco}
+                </p>
+                <p className="text-xs text-[#9E9689]">Bairro Pestana • Osasco — SP</p>
               </div>
 
-              {/* Facilidade para Estacionar */}
-              <div className="flex items-start gap-4 p-4 rounded-xl fundo-elevado border borda-suave">
-                <div className="w-10 h-10 rounded-lg fundo-card flex items-center justify-center text-[#DFB15B] shrink-0">
-                  <Car className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-semibold texto-principal">Fácil de Estacionar</p>
-                  <p className="text-xs texto-secundario mt-0.5 font-light">
-                    Rua calma e segura, com fácil estacionamento em frente e nas proximidades do estúdio.
-                  </p>
-                </div>
+              {/* 02 - Estacionamento */}
+              <div className="py-6 space-y-1.5">
+                <span className="indexador-editorial text-[#C5A880] block">
+                  02 — Estacionamento
+                </span>
+                <p className="text-sm text-[#F5F2EB]">Fácil de Estacionar</p>
+                <p className="text-xs text-[#9E9689] leading-relaxed">
+                  Rua calma e segura, com facilidade para estacionar em frente e nas proximidades do estúdio.
+                </p>
               </div>
 
-              {/* Horário de Atendimento */}
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg fundo-elevado flex items-center justify-center text-[#DFB15B] shrink-0">
-                  <Clock className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-semibold texto-principal">Horário de Atendimento</p>
-                  <p className="text-xs texto-secundario mt-0.5 font-light">{DADOS_STUDIO.horarioFuncionamento}</p>
-                </div>
+              {/* 03 - Horário */}
+              <div className="py-6 space-y-1.5">
+                <span className="indexador-editorial text-[#C5A880] block">
+                  03 — Horário de Atendimento
+                </span>
+                <p className="text-sm text-[#F5F2EB]">{DADOS_STUDIO.horarioFuncionamento}</p>
               </div>
 
-              {/* Canais Sociais e WhatsApp */}
-              <div className="flex items-center gap-3 pt-2">
+              {/* Canais Diretos */}
+              <div className="py-6 flex flex-wrap items-center justify-between gap-4 text-xs uppercase tracking-[0.16em]">
                 <a
                   href={DADOS_STUDIO.urlInstagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-3 px-3 rounded-xl fundo-elevado hover:fundo-card border borda-suave text-xs texto-principal font-medium transition-colors"
+                  className="link-editorial text-[#F5F2EB] hover:text-[#C5A880] transition-colors inline-flex items-center gap-1.5"
                 >
-                  <InstagramIcon className="w-4 h-4 text-[#DFB15B]" />
-                  <span>@lashamandaborges</span>
+                  <span>{DADOS_STUDIO.instagram}</span>
+                  <span className="seta-diagonal text-[#C5A880]">↗</span>
                 </a>
 
                 <a
                   href={obterLinkWhatsApp()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-3 px-3 rounded-xl fundo-elevado hover:fundo-card border borda-suave text-xs texto-principal font-medium transition-colors"
+                  className="link-editorial text-[#F5F2EB] hover:text-[#C5A880] transition-colors inline-flex items-center gap-1.5 numeral-tabular"
                 >
-                  <Phone className="w-4 h-4 text-[#25D366]" />
                   <span>{DADOS_STUDIO.telefone}</span>
+                  <span className="seta-diagonal text-[#C5A880]">↗</span>
                 </a>
               </div>
             </div>
 
-            {/* Botão para Rota no Google Maps */}
-            <div className="pt-4 border-t borda-suave">
-              <a
-                href={DADOS_STUDIO.urlMapaBusca}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-gold-gradient text-[#0F0814] font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-[1.02] transition-all botao-magnetico"
-              >
-                <Navigation className="w-4 h-4" />
-                <span>Traçar Rota no Google Maps</span>
-              </a>
-            </div>
-
+            <a
+              href={DADOS_STUDIO.urlMapaBusca}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="botao-editorial w-full py-4"
+            >
+              <span>Traçar Rota no Google Maps</span>
+              <span className="seta-diagonal" aria-hidden="true">
+                ↗
+              </span>
+            </a>
           </div>
 
-          {/* Coluna da Direita: Mapa Interativo do Google (7 colunas) */}
-          <div className="lg:col-span-7 rounded-2xl overflow-hidden border borda-destaque shadow-xl relative min-h-[380px] fundo-superficie">
+          {/* Coluna da Direita: Mapa Google Maps com Filtro Dark Editorial */}
+          <div
+            className="lg:col-span-7 relative rounded-[4px] overflow-hidden border border-[var(--border-hairline)] min-h-[380px] bg-[#171411] revelar-scroll"
+            style={{ '--atraso': '140ms' } as React.CSSProperties}
+          >
             <iframe
               title="Localização Studio Borges Amanda Borges em Osasco"
               src="https://maps.google.com/maps?q=Rua+Ulisses+Soares,+12+-+Pestana,+Osasco+-+SP&t=&z=16&ie=UTF8&iwloc=&output=embed"
-              className="w-full h-full min-h-[400px] border-0 filter contrast-[1.1] opacity-90"
+              className="w-full h-full min-h-[420px] border-0 mapa-editorial"
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-            
-            {/* Card informativo flutuante sobre o mapa */}
-            <div className="absolute top-4 left-4 right-4 sm:right-auto fundo-superficie-translucido backdrop-blur-md p-4 rounded-xl border borda-destaque max-w-sm shadow-xl">
-              <p className="text-xs font-serif font-bold texto-principal">Studio Borges • Amanda Borges</p>
-              <p className="text-[11px] texto-secundario mt-1 font-light">Rua Ulisses Soares, 12 - Pestana, Osasco - SP</p>
-              <p className="text-[10px] text-[#DFB15B] mt-1 font-semibold">Próximo a vias principais • Fácil de estacionar</p>
+
+            <div className="absolute top-4 left-4 bg-[#0E0C0A]/92 border border-[var(--border-hairline)] px-4 py-3 rounded-[2px] max-w-xs">
+              <p className="font-serif text-base text-[#F5F2EB] leading-tight">
+                Studio Borges • Amanda Borges
+              </p>
+              <p className="text-[11px] text-[#9E9689] mt-1">
+                Rua Ulisses Soares, 12 — Pestana, Osasco - SP
+              </p>
+              <p className="text-[10px] uppercase tracking-[0.16em] text-[#C5A880] mt-1.5">
+                Fácil Acesso • Vaga na Rua
+              </p>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
   );

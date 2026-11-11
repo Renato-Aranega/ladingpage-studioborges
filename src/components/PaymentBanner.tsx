@@ -1,77 +1,64 @@
 import React from 'react';
-import { CreditCard, Banknote, QrCode, Percent, ShieldCheck } from 'lucide-react';
+import { DADOS_STUDIO } from '../data/catalog';
+import { usarRevelacaoScroll } from '../hooks/useRevelacaoScroll';
 
 /**
- * Faixa Informativa de Pagamentos e Descontos
- * Destaca o desconto de 5% no Pix ou espécie e os métodos de pagamento aceitos
+ * Faixa Editorial de Condições de Pagamento
+ * Organizada por divisórias secas de 1px em superfície Warm Charcoal (#171411).
  */
 export const PaymentBanner: React.FC = () => {
+  const referenciaSecao = usarRevelacaoScroll();
+
   return (
-    <section className="py-14 fundo-secundario border-y borda-suave relative overflow-hidden transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          
-          {/* Caixa de Destaque: 5% de Desconto */}
-          <div className="md:col-span-5 fundo-card p-6 rounded-2xl border borda-destaque shadow-lg flex items-center gap-5">
-            <div className="w-16 h-16 rounded-2xl bg-gold-gradient flex items-center justify-center text-[#0F0814] shrink-0 font-black text-2xl shadow-lg">
-              <Percent className="w-8 h-8" />
-            </div>
-            <div>
-              <span className="text-xs uppercase tracking-widest text-[#DFB15B] font-bold block">
-                Economia Real
-              </span>
-              <h3 className="text-xl font-serif font-bold texto-principal">
-                5% de Desconto Especial
-              </h3>
-              <p className="text-xs texto-secundario mt-1 font-light">
-                Válido para pagamentos à vista via <strong>Pix</strong> ou <strong>dinheiro em espécie</strong> em todos os serviços.
-              </p>
-            </div>
+    <section
+      ref={referenciaSecao}
+      aria-label="Condições de pagamento"
+      className="bg-[#171411] border-y border-[var(--border-hairline)] py-12 lg:py-14"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0 items-start md:divide-x md:divide-[var(--border-hairline)]">
+          {/* Condição Principal */}
+          <div className="md:col-span-5 md:pr-8 space-y-2 revelar-scroll">
+            <span className="indexador-editorial text-[#C5A880] block">
+              Benefício Direto
+            </span>
+            <p className="font-serif text-2xl sm:text-3xl text-[#F5F2EB] leading-snug">
+              5% de desconto especial
+            </p>
+            <p className="text-xs sm:text-sm text-[#9E9689] leading-relaxed">
+              {DADOS_STUDIO.avisoDesconto} em todos os procedimentos e manutenções.
+            </p>
           </div>
 
-          {/* Métodos de Pagamento Aceitos */}
-          <div className="md:col-span-7 flex flex-wrap items-center justify-around gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl fundo-elevado border borda-suave flex items-center justify-center text-[#DFB15B] shadow-sm">
-                <QrCode className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold texto-principal">Pix Imediato</p>
-                <p className="text-[11px] text-[#DFB15B] font-medium">Com 5% OFF</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl fundo-elevado border borda-suave flex items-center justify-center text-[#DFB15B] shadow-sm">
-                <Banknote className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold texto-principal">Espécie</p>
-                <p className="text-[11px] text-[#DFB15B] font-medium">Com 5% OFF</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl fundo-elevado border borda-suave flex items-center justify-center text-[#A855F7] shadow-sm">
-                <CreditCard className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold texto-principal">Cartões</p>
-                <p className="text-[11px] texto-secundario">Crédito & Débito</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl fundo-elevado border borda-suave flex items-center justify-center text-[#25D366] shadow-sm">
-                <ShieldCheck className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold texto-principal">Transparência</p>
-                <p className="text-[11px] texto-secundario">Sem taxas surpresa</p>
-              </div>
-            </div>
+          {/* 01 - Pix */}
+          <div
+            className="md:col-span-2 md:px-6 space-y-1.5 revelar-scroll"
+            style={{ '--atraso': '80ms' } as React.CSSProperties}
+          >
+            <span className="indexador-editorial text-[#C5A880] block">01 — Pix</span>
+            <p className="text-sm font-medium text-[#F5F2EB]">Pix Imediato</p>
+            <p className="text-xs text-[#9E9689]">Desconto de 5% aplicado no atendimento</p>
           </div>
 
+          {/* 02 - Espécie */}
+          <div
+            className="md:col-span-2 md:px-6 space-y-1.5 revelar-scroll"
+            style={{ '--atraso': '140ms' } as React.CSSProperties}
+          >
+            <span className="indexador-editorial text-[#C5A880] block">02 — Espécie</span>
+            <p className="text-sm font-medium text-[#F5F2EB]">Em Dinheiro</p>
+            <p className="text-xs text-[#9E9689]">Mesma condição especial de 5% OFF</p>
+          </div>
+
+          {/* 03 - Cartões */}
+          <div
+            className="md:col-span-3 md:pl-6 space-y-1.5 revelar-scroll"
+            style={{ '--atraso': '200ms' } as React.CSSProperties}
+          >
+            <span className="indexador-editorial text-[#C5A880] block">03 — Cartões</span>
+            <p className="text-sm font-medium text-[#F5F2EB]">Crédito &amp; Débito</p>
+            <p className="text-xs text-[#9E9689]">Transparência total em todos os valores</p>
+          </div>
         </div>
       </div>
     </section>

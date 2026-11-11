@@ -1,5 +1,4 @@
-import React from 'react';
-import { X, ZoomIn, MessageCircle } from 'lucide-react';
+import React, { useEffect } from 'react';
 import { obterLinkWhatsApp } from '../data/catalog';
 
 interface ModalFotoProps {
@@ -12,8 +11,8 @@ interface ModalFotoProps {
 }
 
 /**
- * Modal Lightbox para visualização de fotos em alta resolução
- * Permite que a cliente veja todos os detalhes dos fios e acabamento
+ * Lightbox Editorial para visualização em alta resolução.
+ * Acabamento fosco em Obsidian Espresso (#0E0C0A) com linhas de 1px.
  */
 export const ModalFoto: React.FC<ModalFotoProps> = ({
   aberto,
@@ -23,53 +22,72 @@ export const ModalFoto: React.FC<ModalFotoProps> = ({
   descricao,
   preco,
 }) => {
+  // Permite fechar o modal pressionando a tecla Esc
+  useEffect(() => {
+    if (!aberto) return;
+    const lidarComTecla = (evento: KeyboardEvent) => {
+      if (evento.key === 'Escape') aoFechar();
+    };
+    window.addEventListener('keydown', lidarComTecla);
+    return () => window.removeEventListener('keydown', lidarComTecla);
+  }, [aberto, aoFechar]);
+
   if (!aberto) return null;
 
   const precoPix = preco * 0.95;
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fade-in"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Visualização ampliada de ${titulo}`}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#0E0C0A]/90 backdrop-blur-sm"
       onClick={aoFechar}
     >
       <div
-        className="relative max-w-2xl w-full fundo-superficie border borda-destaque rounded-3xl overflow-hidden shadow-2xl"
+        className="relative max-w-2xl w-full bg-[#0E0C0A] border border-[var(--border-hairline)] rounded-[4px] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Botão de Fechar */}
-        <button
-          onClick={aoFechar}
-          className="absolute top-4 right-4 z-10 p-2.5 rounded-full fundo-card-translucido text-[#DFB15B] hover:fundo-card border borda-suave transition-colors cursor-pointer"
-          aria-label="Fechar visualização da foto"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        {/* Cabeçalho do Modal */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border-hairline)]">
+          <span className="indexador-editorial text-[#C5A880]">
+            Registro Real — Studio Borges
+          </span>
+          <button
+            type="button"
+            onClick={aoFechar}
+            className="text-[11px] uppercase tracking-[0.2em] text-[#9E9689] hover:text-[#F5F2EB] transition-colors cursor-pointer"
+            aria-label="Fechar visualização da foto"
+          >
+            Fechar ×
+          </button>
+        </div>
 
-        {/* Imagem em tamanho nobre com aspecto vertical original */}
-        <div className="relative aspect-[3/4] max-h-[65vh] w-full overflow-hidden bg-black flex items-center justify-center">
+        {/* Fotografia em Proporção Original Limpa */}
+        <div className="relative aspect-[4/5] max-h-[62vh] w-full bg-[#171411] flex items-center justify-center overflow-hidden">
           <img
             src={imagemUrl}
             alt={titulo}
             className="w-full h-full object-contain"
           />
-          <div className="absolute bottom-3 left-4 flex items-center gap-1.5 text-xs text-[#DFB15B] fundo-superficie-translucido px-3 py-1 rounded-full border borda-suave backdrop-blur-sm">
-            <ZoomIn className="w-3.5 h-3.5" />
-            <span>Foto real do Studio Borges</span>
-          </div>
         </div>
 
-        {/* Rodapé do Modal com Informações e CTA */}
-        <div className="p-6 space-y-4 fundo-superficie">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div>
-              <h3 className="text-xl font-serif font-bold texto-principal">{titulo}</h3>
-              <p className="text-xs texto-secundario mt-0.5 font-light">{descricao}</p>
+        {/* Rodapé Informativo e Ação Seca */}
+        <div className="p-6 space-y-5 border-t border-[var(--border-hairline)]">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
+            <div className="space-y-1">
+              <h3 className="font-serif text-2xl sm:text-3xl text-[#F5F2EB] leading-tight">
+                {titulo}
+              </h3>
+              <p className="text-xs sm:text-sm text-[#9E9689] max-w-md font-light">
+                {descricao}
+              </p>
             </div>
-            <div className="text-left sm:text-right shrink-0">
-              <span className="text-2xl font-serif font-bold texto-principal">
+            <div className="sm:text-right shrink-0 numeral-tabular">
+              <span className="font-serif text-2xl text-[#F5F2EB] block leading-none">
                 R$ {preco.toFixed(2).replace('.', ',')}
               </span>
-              <span className="block text-[11px] text-[#DFB15B] font-semibold">
+              <span className="text-[11px] text-[#C5A880] tracking-[0.08em] uppercase block mt-1.5">
                 R$ {precoPix.toFixed(2).replace('.', ',')} no Pix (5% OFF)
               </span>
             </div>
@@ -79,14 +97,15 @@ export const ModalFoto: React.FC<ModalFotoProps> = ({
             href={obterLinkWhatsApp(titulo)}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl bg-gold-gradient text-[#0F0814] font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-[1.01] transition-all botao-magnetico"
+            className="botao-editorial w-full py-4"
           >
-            <MessageCircle className="w-4 h-4 text-[#0F0814]" />
-            <span>Agendar {titulo} no WhatsApp</span>
+            <span>Agendar Procedimento</span>
+            <span className="seta-diagonal" aria-hidden="true">
+              ↗
+            </span>
           </a>
         </div>
       </div>
     </div>
   );
 };
-
